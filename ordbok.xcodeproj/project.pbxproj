@@ -12,6 +12,13 @@
 		F3D7277A23466E110086C131 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3D7277823466E110086C131 /* Main.storyboard */; };
 		F3D7277C23466E130086C131 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3D7277B23466E130086C131 /* Assets.xcassets */; };
 		F3D7277F23466E130086C131 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3D7277D23466E130086C131 /* LaunchScreen.storyboard */; };
+		F3D7278A23466E6F0086C131 /* Dawg.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D7278923466E6F0086C131 /* Dawg.swift */; };
+		F3D7278C23466F9B0086C131 /* DawgBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D7278B23466F9B0086C131 /* DawgBuilder.swift */; };
+		F3EAE57C2346A0DB002F70A4 /* nsf2019.bin in Resources */ = {isa = PBXBuildFile; fileRef = F3EAE57B2346A0DB002F70A4 /* nsf2019.bin */; };
+		F3EAE57E23471D69002F70A4 /* tanum.bin in Resources */ = {isa = PBXBuildFile; fileRef = F3EAE57D23471D69002F70A4 /* tanum.bin */; };
+		F3EAE580234723B0002F70A4 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EAE57F234723B0002F70A4 /* TableViewCell.swift */; };
+		F3EAE5822347332D002F70A4 /* FeedbackHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EAE5812347332D002F70A4 /* FeedbackHeader.swift */; };
+		F3EAE58423473BDB002F70A4 /* CustomUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EAE58323473BDB002F70A4 /* CustomUIButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +29,13 @@
 		F3D7277B23466E130086C131 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3D7277E23466E130086C131 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F3D7278023466E130086C131 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3D7278923466E6F0086C131 /* Dawg.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dawg.swift; sourceTree = "<group>"; };
+		F3D7278B23466F9B0086C131 /* DawgBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DawgBuilder.swift; sourceTree = "<group>"; };
+		F3EAE57B2346A0DB002F70A4 /* nsf2019.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = nsf2019.bin; sourceTree = "<group>"; };
+		F3EAE57D23471D69002F70A4 /* tanum.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = tanum.bin; sourceTree = "<group>"; };
+		F3EAE57F234723B0002F70A4 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		F3EAE5812347332D002F70A4 /* FeedbackHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackHeader.swift; sourceTree = "<group>"; };
+		F3EAE58323473BDB002F70A4 /* CustomUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +68,29 @@
 		F3D7277323466E110086C131 /* ordbok */ = {
 			isa = PBXGroup;
 			children = (
+				F3D7278023466E130086C131 /* Info.plist */,
 				F3D7277423466E110086C131 /* AppDelegate.swift */,
 				F3D7277623466E110086C131 /* ViewController.swift */,
-				F3D7277823466E110086C131 /* Main.storyboard */,
+				F3EAE5812347332D002F70A4 /* FeedbackHeader.swift */,
+				F3EAE57F234723B0002F70A4 /* TableViewCell.swift */,
+				F3D7278923466E6F0086C131 /* Dawg.swift */,
+				F3D7278B23466F9B0086C131 /* DawgBuilder.swift */,
 				F3D7277B23466E130086C131 /* Assets.xcassets */,
 				F3D7277D23466E130086C131 /* LaunchScreen.storyboard */,
-				F3D7278023466E130086C131 /* Info.plist */,
+				F3D7277823466E110086C131 /* Main.storyboard */,
+				F3D7278823466E4B0086C131 /* Resources */,
+				F3EAE58323473BDB002F70A4 /* CustomUIButton.swift */,
 			);
 			path = ordbok;
+			sourceTree = "<group>";
+		};
+		F3D7278823466E4B0086C131 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F3EAE57B2346A0DB002F70A4 /* nsf2019.bin */,
+				F3EAE57D23471D69002F70A4 /* tanum.bin */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,6 +152,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3D7277F23466E130086C131 /* LaunchScreen.storyboard in Resources */,
+				F3EAE57E23471D69002F70A4 /* tanum.bin in Resources */,
+				F3EAE57C2346A0DB002F70A4 /* nsf2019.bin in Resources */,
 				F3D7277C23466E130086C131 /* Assets.xcassets in Resources */,
 				F3D7277A23466E110086C131 /* Main.storyboard in Resources */,
 			);
@@ -135,7 +166,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3EAE580234723B0002F70A4 /* TableViewCell.swift in Sources */,
+				F3EAE58423473BDB002F70A4 /* CustomUIButton.swift in Sources */,
 				F3D7277723466E110086C131 /* ViewController.swift in Sources */,
+				F3D7278A23466E6F0086C131 /* Dawg.swift in Sources */,
+				F3EAE5822347332D002F70A4 /* FeedbackHeader.swift in Sources */,
+				F3D7278C23466F9B0086C131 /* DawgBuilder.swift in Sources */,
 				F3D7277523466E110086C131 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

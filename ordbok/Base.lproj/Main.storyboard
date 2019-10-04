@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +11,194 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ordbok" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XRY-ir-LYc">
+                                <rect key="frame" x="20" y="138" width="374" height="68"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                <connections>
+                                    <action selector="enterPressed:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="UpZ-SY-QUx"/>
+                                    <action selector="inputEditingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="u4z-jC-lF4"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SBS-77-jSi">
+                                <rect key="frame" x="20" y="214" width="374" height="68"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="68" id="3ta-9P-SIC"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ivq-YM-qaB"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="25" estimatedRowHeight="-1" sectionHeaderHeight="50" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hyz-iY-mRm">
+                                <rect key="frame" x="20" y="290" width="374" height="572"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedbackHeader" rowHeight="50" id="Zvb-JM-Lzt" customClass="FeedbackHeader" customModule="ordbok" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zvb-JM-Lzt" id="ery-sR-6ns" customClass="FeedbackHeader" customModule="ordbok" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bkz-Sd-99g">
+                                                    <rect key="frame" x="10" y="0.0" width="356" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="356" id="uZX-67-dhw"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Bkz-Sd-99g" firstAttribute="leading" secondItem="ery-sR-6ns" secondAttribute="leadingMargin" constant="-10" id="Ixw-kg-bxm"/>
+                                                <constraint firstItem="Bkz-Sd-99g" firstAttribute="top" secondItem="ery-sR-6ns" secondAttribute="topMargin" constant="-11" id="LrW-yu-qYC"/>
+                                                <constraint firstItem="Bkz-Sd-99g" firstAttribute="centerY" secondItem="ery-sR-6ns" secondAttribute="centerY" id="WlZ-o8-ao6"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="feedbackLabel" destination="Bkz-Sd-99g" id="cDb-eQ-uLA"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableViewCell" rowHeight="25" id="4Zm-Kt-ECl" customClass="TableViewCell" customModule="ordbok" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="78" width="374" height="25"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4Zm-Kt-ECl" id="Z5f-Iq-DrZ" customClass="TableViewCell" customModule="ordbok" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="25"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUn-8l-CcK">
+                                                    <rect key="frame" x="32" y="2" width="334" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="334" id="eaZ-6G-HNK"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="zUn-8l-CcK" firstAttribute="centerY" secondItem="Z5f-Iq-DrZ" secondAttribute="centerY" id="1BW-VS-7fH"/>
+                                                <constraint firstItem="zUn-8l-CcK" firstAttribute="top" secondItem="Z5f-Iq-DrZ" secondAttribute="topMargin" constant="-9" id="GWe-b4-Uvp"/>
+                                                <constraint firstItem="zUn-8l-CcK" firstAttribute="leading" secondItem="Z5f-Iq-DrZ" secondAttribute="leadingMargin" constant="12" id="a2C-Ao-JfK"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cellLabel" destination="zUn-8l-CcK" id="kni-UP-0ny"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jx1-kb-DIN" customClass="CustomUIButton" customModule="ordbok" customModuleProvider="target">
+                                <rect key="frame" x="20" y="78" width="105" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="O8a-dv-3iM"/>
+                                    <constraint firstAttribute="width" priority="750" constant="105" id="i5F-XG-IKR"/>
+                                </constraints>
+                                <state key="normal" title="Anagram"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="anagramButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="P9m-Qa-0gn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oFX-DZ-rne" customClass="CustomUIButton" customModule="ordbok" customModuleProvider="target">
+                                <rect key="frame" x="154.5" y="78" width="105" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" priority="750" constant="105" id="u3S-q7-fjo"/>
+                                </constraints>
+                                <state key="normal" title="Prefiks"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="prefixButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gF6-cV-zXe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="syy-7E-1TR" customClass="CustomUIButton" customModule="ordbok" customModuleProvider="target">
+                                <rect key="frame" x="288.5" y="78" width="105.5" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" priority="750" constant="105" id="BuM-2o-4ml"/>
+                                </constraints>
+                                <state key="normal" title="Suffiks"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="suffixButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="H4M-Cs-t2a"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="oFX-DZ-rne" firstAttribute="centerX" secondItem="XRY-ir-LYc" secondAttribute="centerX" id="3cO-aO-lVs"/>
+                            <constraint firstItem="SBS-77-jSi" firstAttribute="trailing" secondItem="hyz-iY-mRm" secondAttribute="trailing" id="3og-s7-inI"/>
+                            <constraint firstItem="Jx1-kb-DIN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="34" id="6FU-aN-kRw"/>
+                            <constraint firstItem="XRY-ir-LYc" firstAttribute="top" secondItem="Jx1-kb-DIN" secondAttribute="bottom" constant="17" id="6w7-Nv-3Ba"/>
+                            <constraint firstItem="oFX-DZ-rne" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Jx1-kb-DIN" secondAttribute="trailing" constant="30" id="Cy9-Nh-o6Y"/>
+                            <constraint firstItem="oFX-DZ-rne" firstAttribute="top" secondItem="syy-7E-1TR" secondAttribute="top" id="Fra-bw-oF6"/>
+                            <constraint firstItem="hyz-iY-mRm" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="H0a-al-tX6"/>
+                            <constraint firstItem="XRY-ir-LYc" firstAttribute="trailing" secondItem="SBS-77-jSi" secondAttribute="trailing" id="NdQ-tk-xVc"/>
+                            <constraint firstItem="Jx1-kb-DIN" firstAttribute="leading" secondItem="XRY-ir-LYc" secondAttribute="leading" id="Rc7-xo-AfJ"/>
+                            <constraint firstItem="SBS-77-jSi" firstAttribute="leading" secondItem="hyz-iY-mRm" secondAttribute="leading" id="S3o-ih-1P9"/>
+                            <constraint firstItem="SBS-77-jSi" firstAttribute="top" secondItem="XRY-ir-LYc" secondAttribute="bottom" constant="8" id="UzT-7O-7WE"/>
+                            <constraint firstItem="syy-7E-1TR" firstAttribute="trailing" secondItem="XRY-ir-LYc" secondAttribute="trailing" id="bWa-of-GY5"/>
+                            <constraint firstItem="XRY-ir-LYc" firstAttribute="leading" secondItem="SBS-77-jSi" secondAttribute="leading" id="bis-t0-Daw"/>
+                            <constraint firstItem="hyz-iY-mRm" firstAttribute="top" secondItem="SBS-77-jSi" secondAttribute="bottom" constant="8" id="cLM-NI-NsU"/>
+                            <constraint firstItem="oFX-DZ-rne" firstAttribute="baseline" secondItem="syy-7E-1TR" secondAttribute="firstBaseline" id="cZq-sU-ieS"/>
+                            <constraint firstItem="syy-7E-1TR" firstAttribute="leading" relation="lessThanOrEqual" secondItem="oFX-DZ-rne" secondAttribute="trailing" constant="29" id="d3J-kG-cep"/>
+                            <constraint firstItem="Jx1-kb-DIN" firstAttribute="baseline" secondItem="oFX-DZ-rne" secondAttribute="baseline" id="dPH-aa-7bz"/>
+                            <constraint firstItem="Jx1-kb-DIN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="fGp-Ov-UjX"/>
+                            <constraint firstItem="syy-7E-1TR" firstAttribute="baseline" secondItem="oFX-DZ-rne" secondAttribute="firstBaseline" id="fKl-nL-YYr"/>
+                            <constraint firstItem="syy-7E-1TR" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="gvH-Yt-cXM"/>
+                            <constraint firstItem="Jx1-kb-DIN" firstAttribute="top" secondItem="oFX-DZ-rne" secondAttribute="top" id="wI1-fX-gEu"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="anagramButton" destination="Jx1-kb-DIN" id="W92-47-ijZ"/>
+                        <outlet property="button" destination="SBS-77-jSi" id="AMT-SQ-Bha"/>
+                        <outlet property="input" destination="XRY-ir-LYc" id="a0I-Eu-5EB"/>
+                        <outlet property="prefiksButton" destination="oFX-DZ-rne" id="EEY-6W-VLi"/>
+                        <outlet property="suffiksButton" destination="syy-7E-1TR" id="S90-Bq-k4g"/>
+                        <outlet property="tableView" destination="hyz-iY-mRm" id="7nZ-fh-eF2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="102.45535714285714"/>
         </scene>
     </scenes>
 </document>
