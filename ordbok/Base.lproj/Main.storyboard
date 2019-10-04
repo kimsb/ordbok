@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
@@ -13,11 +13,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ordbok" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XRY-ir-LYc">
-                                <rect key="frame" x="20" y="138" width="374" height="68"/>
+                                <rect key="frame" x="16" y="94" width="288" height="68"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
@@ -28,7 +28,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SBS-77-jSi">
-                                <rect key="frame" x="20" y="214" width="374" height="68"/>
+                                <rect key="frame" x="16" y="170" width="288" height="68"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="68" id="3ta-9P-SIC"/>
                                 </constraints>
@@ -40,30 +40,38 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="25" estimatedRowHeight="-1" sectionHeaderHeight="50" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hyz-iY-mRm">
-                                <rect key="frame" x="20" y="290" width="374" height="572"/>
+                                <rect key="frame" x="16" y="246" width="288" height="234"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FeedbackHeader" rowHeight="50" id="Zvb-JM-Lzt" customClass="FeedbackHeader" customModule="ordbok" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="374" height="50"/>
+                                        <rect key="frame" x="0.0" y="28" width="288" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zvb-JM-Lzt" id="ery-sR-6ns" customClass="FeedbackHeader" customModule="ordbok" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="288" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bkz-Sd-99g">
-                                                    <rect key="frame" x="10" y="0.0" width="356" height="50"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Bkz-Sd-99g">
+                                                    <rect key="frame" x="10" y="0.0" width="268" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="356" id="uZX-67-dhw"/>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="1000" id="98T-z9-yk2"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                    <nil key="textColor"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Godkjent!">
+                                                            <attributes>
+                                                                <font key="NSFont" metaFont="system" size="30"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Bkz-Sd-99g" firstAttribute="leading" secondItem="ery-sR-6ns" secondAttribute="leadingMargin" constant="-10" id="Ixw-kg-bxm"/>
-                                                <constraint firstItem="Bkz-Sd-99g" firstAttribute="top" secondItem="ery-sR-6ns" secondAttribute="topMargin" constant="-11" id="LrW-yu-qYC"/>
-                                                <constraint firstItem="Bkz-Sd-99g" firstAttribute="centerY" secondItem="ery-sR-6ns" secondAttribute="centerY" id="WlZ-o8-ao6"/>
+                                                <constraint firstItem="Bkz-Sd-99g" firstAttribute="leading" secondItem="ery-sR-6ns" secondAttribute="leading" constant="10" id="STe-mH-wKR"/>
+                                                <constraint firstItem="Bkz-Sd-99g" firstAttribute="top" secondItem="ery-sR-6ns" secondAttribute="topMargin" constant="-11" id="hYD-v0-xqd"/>
+                                                <constraint firstItem="Bkz-Sd-99g" firstAttribute="centerY" secondItem="ery-sR-6ns" secondAttribute="centerY" id="j3Y-1h-0HL"/>
+                                                <constraint firstAttribute="trailing" secondItem="Bkz-Sd-99g" secondAttribute="trailing" constant="10" id="qEr-0P-VfN"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -71,17 +79,14 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TableViewCell" rowHeight="25" id="4Zm-Kt-ECl" customClass="TableViewCell" customModule="ordbok" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="78" width="374" height="25"/>
+                                        <rect key="frame" x="0.0" y="78" width="288" height="25"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4Zm-Kt-ECl" id="Z5f-Iq-DrZ" customClass="TableViewCell" customModule="ordbok" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="25"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="288" height="25"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUn-8l-CcK">
-                                                    <rect key="frame" x="32" y="2" width="334" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="334" id="eaZ-6G-HNK"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="32" y="2" width="0.0" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -90,7 +95,7 @@
                                             <constraints>
                                                 <constraint firstItem="zUn-8l-CcK" firstAttribute="centerY" secondItem="Z5f-Iq-DrZ" secondAttribute="centerY" id="1BW-VS-7fH"/>
                                                 <constraint firstItem="zUn-8l-CcK" firstAttribute="top" secondItem="Z5f-Iq-DrZ" secondAttribute="topMargin" constant="-9" id="GWe-b4-Uvp"/>
-                                                <constraint firstItem="zUn-8l-CcK" firstAttribute="leading" secondItem="Z5f-Iq-DrZ" secondAttribute="leadingMargin" constant="12" id="a2C-Ao-JfK"/>
+                                                <constraint firstItem="zUn-8l-CcK" firstAttribute="leading" secondItem="Z5f-Iq-DrZ" secondAttribute="leading" constant="32" id="zKb-rp-EUW"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -100,10 +105,9 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jx1-kb-DIN" customClass="CustomUIButton" customModule="ordbok" customModuleProvider="target">
-                                <rect key="frame" x="20" y="78" width="105" height="43"/>
+                                <rect key="frame" x="16" y="34" width="82.5" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="O8a-dv-3iM"/>
-                                    <constraint firstAttribute="width" priority="750" constant="105" id="i5F-XG-IKR"/>
                                 </constraints>
                                 <state key="normal" title="Anagram"/>
                                 <userDefinedRuntimeAttributes>
@@ -122,10 +126,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oFX-DZ-rne" customClass="CustomUIButton" customModule="ordbok" customModuleProvider="target">
-                                <rect key="frame" x="154.5" y="78" width="105" height="43"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" priority="750" constant="105" id="u3S-q7-fjo"/>
-                                </constraints>
+                                <rect key="frame" x="118.5" y="34" width="83" height="43"/>
                                 <state key="normal" title="Prefiks"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -143,10 +144,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="syy-7E-1TR" customClass="CustomUIButton" customModule="ordbok" customModuleProvider="target">
-                                <rect key="frame" x="288.5" y="78" width="105.5" height="43"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" priority="750" constant="105" id="BuM-2o-4ml"/>
-                                </constraints>
+                                <rect key="frame" x="221.5" y="34" width="82.5" height="43"/>
                                 <state key="normal" title="Suffiks"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -166,26 +164,27 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="syy-7E-1TR" firstAttribute="leading" secondItem="oFX-DZ-rne" secondAttribute="trailing" constant="20" id="1vU-S8-GlO"/>
                             <constraint firstItem="oFX-DZ-rne" firstAttribute="centerX" secondItem="XRY-ir-LYc" secondAttribute="centerX" id="3cO-aO-lVs"/>
                             <constraint firstItem="SBS-77-jSi" firstAttribute="trailing" secondItem="hyz-iY-mRm" secondAttribute="trailing" id="3og-s7-inI"/>
                             <constraint firstItem="Jx1-kb-DIN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="34" id="6FU-aN-kRw"/>
                             <constraint firstItem="XRY-ir-LYc" firstAttribute="top" secondItem="Jx1-kb-DIN" secondAttribute="bottom" constant="17" id="6w7-Nv-3Ba"/>
-                            <constraint firstItem="oFX-DZ-rne" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Jx1-kb-DIN" secondAttribute="trailing" constant="30" id="Cy9-Nh-o6Y"/>
                             <constraint firstItem="oFX-DZ-rne" firstAttribute="top" secondItem="syy-7E-1TR" secondAttribute="top" id="Fra-bw-oF6"/>
                             <constraint firstItem="hyz-iY-mRm" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="H0a-al-tX6"/>
+                            <constraint firstItem="hyz-iY-mRm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="JmN-Bs-QCp"/>
                             <constraint firstItem="XRY-ir-LYc" firstAttribute="trailing" secondItem="SBS-77-jSi" secondAttribute="trailing" id="NdQ-tk-xVc"/>
-                            <constraint firstItem="Jx1-kb-DIN" firstAttribute="leading" secondItem="XRY-ir-LYc" secondAttribute="leading" id="Rc7-xo-AfJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hyz-iY-mRm" secondAttribute="trailing" constant="16" id="Pp0-1k-ppG"/>
                             <constraint firstItem="SBS-77-jSi" firstAttribute="leading" secondItem="hyz-iY-mRm" secondAttribute="leading" id="S3o-ih-1P9"/>
                             <constraint firstItem="SBS-77-jSi" firstAttribute="top" secondItem="XRY-ir-LYc" secondAttribute="bottom" constant="8" id="UzT-7O-7WE"/>
                             <constraint firstItem="syy-7E-1TR" firstAttribute="trailing" secondItem="XRY-ir-LYc" secondAttribute="trailing" id="bWa-of-GY5"/>
                             <constraint firstItem="XRY-ir-LYc" firstAttribute="leading" secondItem="SBS-77-jSi" secondAttribute="leading" id="bis-t0-Daw"/>
                             <constraint firstItem="hyz-iY-mRm" firstAttribute="top" secondItem="SBS-77-jSi" secondAttribute="bottom" constant="8" id="cLM-NI-NsU"/>
                             <constraint firstItem="oFX-DZ-rne" firstAttribute="baseline" secondItem="syy-7E-1TR" secondAttribute="firstBaseline" id="cZq-sU-ieS"/>
-                            <constraint firstItem="syy-7E-1TR" firstAttribute="leading" relation="lessThanOrEqual" secondItem="oFX-DZ-rne" secondAttribute="trailing" constant="29" id="d3J-kG-cep"/>
                             <constraint firstItem="Jx1-kb-DIN" firstAttribute="baseline" secondItem="oFX-DZ-rne" secondAttribute="baseline" id="dPH-aa-7bz"/>
-                            <constraint firstItem="Jx1-kb-DIN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="fGp-Ov-UjX"/>
                             <constraint firstItem="syy-7E-1TR" firstAttribute="baseline" secondItem="oFX-DZ-rne" secondAttribute="firstBaseline" id="fKl-nL-YYr"/>
-                            <constraint firstItem="syy-7E-1TR" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="gvH-Yt-cXM"/>
+                            <constraint firstItem="syy-7E-1TR" firstAttribute="width" secondItem="oFX-DZ-rne" secondAttribute="width" id="ju7-pq-x11"/>
+                            <constraint firstItem="Jx1-kb-DIN" firstAttribute="width" secondItem="oFX-DZ-rne" secondAttribute="width" id="rNh-Dz-hpl"/>
+                            <constraint firstItem="oFX-DZ-rne" firstAttribute="leading" secondItem="Jx1-kb-DIN" secondAttribute="trailing" constant="20" id="v9P-cj-7a7"/>
                             <constraint firstItem="Jx1-kb-DIN" firstAttribute="top" secondItem="oFX-DZ-rne" secondAttribute="top" id="wI1-fX-gEu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

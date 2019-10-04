@@ -145,7 +145,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        let header = tableView.dequeueReusableCell(withIdentifier: "FeedbackHeader") as! FeedbackHeader
+        let header = tableView.dequeueReusableCell(withIdentifier: "FeedbackHeader") as! FeedbackHeader        
         header.feedbackLabel.text = feedback
         
         return header
