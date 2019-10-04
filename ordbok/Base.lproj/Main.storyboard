@@ -24,14 +24,17 @@
                                 <connections>
                                     <action selector="enterPressed:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="UpZ-SY-QUx"/>
                                     <action selector="inputEditingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="u4z-jC-lF4"/>
+                                    <action selector="inputTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="uUJ-39-dol"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SBS-77-jSi">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SBS-77-jSi">
                                 <rect key="frame" x="20" y="214" width="374" height="68"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="68" id="3ta-9P-SIC"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ivq-YM-qaB"/>
                                 </connections>
@@ -40,7 +43,7 @@
                                 <rect key="frame" x="20" y="290" width="374" height="572"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedbackHeader" rowHeight="50" id="Zvb-JM-Lzt" customClass="FeedbackHeader" customModule="ordbok" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FeedbackHeader" rowHeight="50" id="Zvb-JM-Lzt" customClass="FeedbackHeader" customModule="ordbok" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="374" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zvb-JM-Lzt" id="ery-sR-6ns" customClass="FeedbackHeader" customModule="ordbok" customModuleProvider="target">
@@ -67,7 +70,7 @@
                                             <outlet property="feedbackLabel" destination="Bkz-Sd-99g" id="cDb-eQ-uLA"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableViewCell" rowHeight="25" id="4Zm-Kt-ECl" customClass="TableViewCell" customModule="ordbok" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TableViewCell" rowHeight="25" id="4Zm-Kt-ECl" customClass="TableViewCell" customModule="ordbok" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="78" width="374" height="25"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4Zm-Kt-ECl" id="Z5f-Iq-DrZ" customClass="TableViewCell" customModule="ordbok" customModuleProvider="target">
@@ -161,7 +164,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="oFX-DZ-rne" firstAttribute="centerX" secondItem="XRY-ir-LYc" secondAttribute="centerX" id="3cO-aO-lVs"/>
                             <constraint firstItem="SBS-77-jSi" firstAttribute="trailing" secondItem="hyz-iY-mRm" secondAttribute="trailing" id="3og-s7-inI"/>

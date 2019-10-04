@@ -33,6 +33,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func check() {
+        view.endEditing(true)
         feedback = ""
         words = []
         tableView.isScrollEnabled = true
@@ -205,5 +206,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         feedback = ""
         words = []
         tableView.reloadData()
+    }
+    @IBAction func inputTouchDown(_ sender: Any) {
+        input.becomeFirstResponder()
+        input.selectAll(nil)
     }
 }
