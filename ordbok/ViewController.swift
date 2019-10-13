@@ -17,8 +17,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    let nsf = Dawg.load(from: Bundle.main.path(forResource: "nsf2019.bin", ofType: nil)!)!
-    let tanums = Dawg.load(from: Bundle.main.path(forResource: "tanum.bin", ofType: nil)!)!
     var feedback = ""
     var words = [String]()
     
@@ -28,8 +26,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.delegate = self
         tableView.dataSource = self
         
-        input.becomeFirstResponder()
         updateButtonTitle()
+        prepareForInput()
     }
     
     func check() {
@@ -41,19 +39,30 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if (inputText.count > 1) {
             if (anagramButton.hasBeenPressed) {
                 findAnagrams(inputText: inputText)
+                if (words.isEmpty) {
+                    words.append("-")
+                }
             } else if (prefiksButton.hasBeenPressed && suffiksButton.hasBeenPressed) {
                 findPrefixes(inputText: inputText)
                 findSuffixes(inputText: inputText)
+                if (words.isEmpty) {
+                    words.append("-")
+                }
             } else if (prefiksButton.hasBeenPressed) {
                 findPrefixes(inputText: inputText)
+                if (words.isEmpty) {
+                    words.append("-")
+                }
             } else if (suffiksButton.hasBeenPressed) {
                 findSuffixes(inputText: inputText)
+                if (words.isEmpty) {
+                    words.append("-")
+                }
             } else {
                 checkSingleWord(inputText: inputText)
                 tableView.isScrollEnabled = false
             }
         }
-        
         tableView.reloadData()
         self.tableView.layoutIfNeeded()
         self.tableView.setContentOffset(CGPoint.zero, animated: true)
@@ -67,11 +76,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             filledLetters[index] = inputTextArray[index]
         }
         
-        if let suffix = nsf.anagrams(withLetters: ["?"], wordLength: inputText.count + 1, filledLetters: filledLetters) {
+        if let suffix = Ordlister.shared.nsf.anagrams(withLetters: ["?"], wordLength: inputText.count + 1, filledLetters: filledLetters) {
             anagrams.append(contentsOf: suffix)
         }
         if (inputText.count == 6) {
-            if let suffixTanums = tanums.anagrams(withLetters: ["?"], wordLength: inputText.count + 1, filledLetters: filledLetters) {
+            if let suffixTanums = Ordlister.shared.tanums.anagrams(withLetters: ["?"], wordLength: inputText.count + 1, filledLetters: filledLetters) {
                 for word in suffixTanums {
                     anagrams.append("\(word) (står i Tanums..?)")
                 }
@@ -88,11 +97,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             filledLetters[index+1] = inputTextArray[index]
         }
         
-        if let prefix = nsf.anagrams(withLetters: ["?"], wordLength: inputText.count + 1, filledLetters: filledLetters) {
+        if let prefix = Ordlister.shared.nsf.anagrams(withLetters: ["?"], wordLength: inputText.count + 1, filledLetters: filledLetters) {
             anagrams.append(contentsOf: prefix)
         }
         if (inputText.count == 6) {
-            if let prefixTanums = tanums.anagrams(withLetters: ["?"], wordLength: inputText.count + 1, filledLetters: filledLetters) {
+            if let prefixTanums = Ordlister.shared.tanums.anagrams(withLetters: ["?"], wordLength: inputText.count + 1, filledLetters: filledLetters) {
                 for word in prefixTanums {
                     anagrams.append("\(word) (står i Tanums..?)")
                 }
@@ -104,11 +113,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func findAnagrams(inputText: String) {
         for wordLength in (2...inputText.count).reversed() {
             var anagrams = [String]()
-            if let nsfAnagrams = nsf.anagrams(withLetters: Array(inputText), wordLength: wordLength) {
+            if let nsfAnagrams = Ordlister.shared.nsf.anagrams(withLetters: Array(inputText), wordLength: wordLength) {
                 anagrams.append(contentsOf: nsfAnagrams)
             }
             if (wordLength == 7) {
-                if let tanumAnagrams = tanums.anagrams(withLetters: Array(inputText), wordLength: wordLength) {
+                if let tanumAnagrams = Ordlister.shared.tanums.anagrams(withLetters: Array(inputText), wordLength: wordLength) {
                     for word in tanumAnagrams {
                         anagrams.append("\(word) (står i Tanums..?)")
                     }
@@ -119,8 +128,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func checkSingleWord(inputText: String) {
-        let finnesINSF = nsf.lookup(inputText)
-        let finnesITanums = inputText.count == 7 && tanums.lookup(inputText)
+        let finnesINSF = Ordlister.shared.nsf.lookup(inputText)
+        let finnesITanums = inputText.count == 7 && Ordlister.shared.tanums.lookup(inputText)
         
         if (finnesINSF) {
             if (inputText.count < 7) {
@@ -207,8 +216,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         words = []
         tableView.reloadData()
     }
+    
     @IBAction func inputTouchDown(_ sender: Any) {
+        prepareForInput()
+    }
+    
+    @objc func prepareForInput() {
         input.becomeFirstResponder()
         input.selectAll(nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector:#selector(prepareForInput), name:UIApplication.didBecomeActiveNotification, object:UIApplication.shared
+        )
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
 }

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F38A10F32350C2CE00A4C7A6 /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A10F22350C2CE00A4C7A6 /* Questions.swift */; };
+		F38FE466235394E40049F7AA /* WorkoutSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38FE465235394E40049F7AA /* WorkoutSettings.swift */; };
+		F3C7112C23508871006BD07F /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C7112B23508871006BD07F /* WorkoutViewController.swift */; };
+		F3D1BCE8235099540001F11E /* Ordlister.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D1BCE7235099540001F11E /* Ordlister.swift */; };
+		F3D1BCEA23509BA30001F11E /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D1BCE923509BA30001F11E /* Question.swift */; };
 		F3D7277523466E110086C131 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D7277423466E110086C131 /* AppDelegate.swift */; };
 		F3D7277723466E110086C131 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D7277623466E110086C131 /* ViewController.swift */; };
 		F3D7277A23466E110086C131 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3D7277823466E110086C131 /* Main.storyboard */; };
@@ -22,6 +27,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F38A10F22350C2CE00A4C7A6 /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
+		F38FE465235394E40049F7AA /* WorkoutSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSettings.swift; sourceTree = "<group>"; };
+		F3C7112B23508871006BD07F /* WorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
+		F3D1BCE7235099540001F11E /* Ordlister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ordlister.swift; sourceTree = "<group>"; };
+		F3D1BCE923509BA30001F11E /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		F3D7277123466E110086C131 /* ordbok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ordbok.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3D7277423466E110086C131 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3D7277623466E110086C131 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +59,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F3C7112A23508804006BD07F /* workout */ = {
+			isa = PBXGroup;
+			children = (
+				F3C7112B23508871006BD07F /* WorkoutViewController.swift */,
+			);
+			path = workout;
+			sourceTree = "<group>";
+		};
 		F3D7276823466E110086C131 = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +86,7 @@
 		F3D7277323466E110086C131 /* ordbok */ = {
 			isa = PBXGroup;
 			children = (
+				F3C7112A23508804006BD07F /* workout */,
 				F3D7278023466E130086C131 /* Info.plist */,
 				F3D7277423466E110086C131 /* AppDelegate.swift */,
 				F3D7277623466E110086C131 /* ViewController.swift */,
@@ -75,6 +94,10 @@
 				F3EAE57F234723B0002F70A4 /* TableViewCell.swift */,
 				F3D7278923466E6F0086C131 /* Dawg.swift */,
 				F3D7278B23466F9B0086C131 /* DawgBuilder.swift */,
+				F3D1BCE7235099540001F11E /* Ordlister.swift */,
+				F3D1BCE923509BA30001F11E /* Question.swift */,
+				F38A10F22350C2CE00A4C7A6 /* Questions.swift */,
+				F38FE465235394E40049F7AA /* WorkoutSettings.swift */,
 				F3D7277B23466E130086C131 /* Assets.xcassets */,
 				F3D7277D23466E130086C131 /* LaunchScreen.storyboard */,
 				F3D7277823466E110086C131 /* Main.storyboard */,
@@ -166,10 +189,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F38FE466235394E40049F7AA /* WorkoutSettings.swift in Sources */,
+				F3C7112C23508871006BD07F /* WorkoutViewController.swift in Sources */,
 				F3EAE580234723B0002F70A4 /* TableViewCell.swift in Sources */,
 				F3EAE58423473BDB002F70A4 /* CustomUIButton.swift in Sources */,
 				F3D7277723466E110086C131 /* ViewController.swift in Sources */,
 				F3D7278A23466E6F0086C131 /* Dawg.swift in Sources */,
+				F3D1BCEA23509BA30001F11E /* Question.swift in Sources */,
+				F38A10F32350C2CE00A4C7A6 /* Questions.swift in Sources */,
+				F3D1BCE8235099540001F11E /* Ordlister.swift in Sources */,
 				F3EAE5822347332D002F70A4 /* FeedbackHeader.swift in Sources */,
 				F3D7278C23466F9B0086C131 /* DawgBuilder.swift in Sources */,
 				F3D7277523466E110086C131 /* AppDelegate.swift in Sources */,
@@ -318,17 +346,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RH3SAY22R4;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = QKQ4UUV4L7;
 				INFOPLIST_FILE = ordbok/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = moomin.ordbok;
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = moomin.kimsordbok;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -336,17 +368,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RH3SAY22R4;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = QKQ4UUV4L7;
 				INFOPLIST_FILE = ordbok/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = moomin.ordbok;
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = moomin.kimsordbok;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
