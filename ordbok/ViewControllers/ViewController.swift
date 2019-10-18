@@ -184,6 +184,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func updateButtonTitle() {
+        addToListButton.isHidden = true
         if (anagramButton.hasBeenPressed) {
             button.setTitle("Finn Anagrammer", for: .normal)
         } else if (prefiksButton.hasBeenPressed && suffiksButton.hasBeenPressed) {
