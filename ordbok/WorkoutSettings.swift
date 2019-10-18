@@ -13,12 +13,14 @@ class WorkoutSettings: NSObject, Codable, NSCoding {
     var presufModeSelect: Int
     var presufExclusiveSelect: Int
     var presufOrListsSelect: Int
+    var selectedCustomList: String?
     
-    init(presufBaseCountSelect: Int, presufModeSelect: Int, presufExclusiveSelect: Int, presufOrListsSelect: Int) {
+    init(presufBaseCountSelect: Int, presufModeSelect: Int, presufExclusiveSelect: Int, presufOrListsSelect: Int, selectedCustomList: String? = nil) {
         self.presufBaseCountSelect = presufBaseCountSelect
         self.presufModeSelect = presufModeSelect
         self.presufExclusiveSelect = presufExclusiveSelect
         self.presufOrListsSelect = presufOrListsSelect
+        self.selectedCustomList = selectedCustomList
     }
     
     //MARK: Archiving Paths
@@ -31,6 +33,7 @@ class WorkoutSettings: NSObject, Codable, NSCoding {
         static let presufModeSelect = "presufModeSelect"
         static let presufExclusiveSelect = "presufExclusiveSelect"
         static let presufOrListsSelect = "presufOrListsSelect"
+        static let selectedCustomList = "selectedCustomList"
     }
     
     func encode(with aCoder: NSCoder) {
@@ -38,6 +41,7 @@ class WorkoutSettings: NSObject, Codable, NSCoding {
         aCoder.encode(presufModeSelect, forKey: PropertyKey.presufModeSelect)
         aCoder.encode(presufExclusiveSelect, forKey: PropertyKey.presufExclusiveSelect)
         aCoder.encode(presufOrListsSelect, forKey: PropertyKey.presufOrListsSelect)
+        aCoder.encode(selectedCustomList, forKey: PropertyKey.selectedCustomList)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -45,8 +49,9 @@ class WorkoutSettings: NSObject, Codable, NSCoding {
         let presufModeSelect = aDecoder.decodeInteger(forKey: PropertyKey.presufModeSelect)
         let presufExclusiveSelect = aDecoder.decodeInteger(forKey: PropertyKey.presufExclusiveSelect)
         let presufOrListsSelect = aDecoder.decodeInteger(forKey: PropertyKey.presufOrListsSelect)
+        let selectedCustomList = aDecoder.decodeObject(forKey: PropertyKey.selectedCustomList) as? String
         
-        self.init(presufBaseCountSelect: presufBaseCountSelect, presufModeSelect: presufModeSelect, presufExclusiveSelect: presufExclusiveSelect, presufOrListsSelect: presufOrListsSelect)
+        self.init(presufBaseCountSelect: presufBaseCountSelect, presufModeSelect: presufModeSelect, presufExclusiveSelect: presufExclusiveSelect, presufOrListsSelect: presufOrListsSelect, selectedCustomList: selectedCustomList)
     }
     
 }

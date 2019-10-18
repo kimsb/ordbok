@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F30CC1012359ED27001C8410 /* ActivitySpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CC1002359ED27001C8410 /* ActivitySpinner.swift */; };
 		F38A10F32350C2CE00A4C7A6 /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A10F22350C2CE00A4C7A6 /* Questions.swift */; };
 		F38FE466235394E40049F7AA /* WorkoutSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38FE465235394E40049F7AA /* WorkoutSettings.swift */; };
+		F38FE4682353B5700049F7AA /* CreateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38FE4672353B5700049F7AA /* CreateListViewController.swift */; };
 		F3C7112C23508871006BD07F /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C7112B23508871006BD07F /* WorkoutViewController.swift */; };
 		F3D1BCE8235099540001F11E /* Ordlister.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D1BCE7235099540001F11E /* Ordlister.swift */; };
 		F3D1BCEA23509BA30001F11E /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D1BCE923509BA30001F11E /* Question.swift */; };
@@ -27,8 +29,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F30CC1002359ED27001C8410 /* ActivitySpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitySpinner.swift; sourceTree = "<group>"; };
 		F38A10F22350C2CE00A4C7A6 /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
 		F38FE465235394E40049F7AA /* WorkoutSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSettings.swift; sourceTree = "<group>"; };
+		F38FE4672353B5700049F7AA /* CreateListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateListViewController.swift; sourceTree = "<group>"; };
 		F3C7112B23508871006BD07F /* WorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
 		F3D1BCE7235099540001F11E /* Ordlister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ordlister.swift; sourceTree = "<group>"; };
 		F3D1BCE923509BA30001F11E /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
@@ -63,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				F3C7112B23508871006BD07F /* WorkoutViewController.swift */,
+				F38FE4672353B5700049F7AA /* CreateListViewController.swift */,
 			);
 			path = workout;
 			sourceTree = "<group>";
@@ -103,6 +108,7 @@
 				F3D7277823466E110086C131 /* Main.storyboard */,
 				F3D7278823466E4B0086C131 /* Resources */,
 				F3EAE58323473BDB002F70A4 /* CustomUIButton.swift */,
+				F30CC1002359ED27001C8410 /* ActivitySpinner.swift */,
 			);
 			path = ordbok;
 			sourceTree = "<group>";
@@ -189,9 +195,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F38FE4682353B5700049F7AA /* CreateListViewController.swift in Sources */,
 				F38FE466235394E40049F7AA /* WorkoutSettings.swift in Sources */,
 				F3C7112C23508871006BD07F /* WorkoutViewController.swift in Sources */,
 				F3EAE580234723B0002F70A4 /* TableViewCell.swift in Sources */,
+				F30CC1012359ED27001C8410 /* ActivitySpinner.swift in Sources */,
 				F3EAE58423473BDB002F70A4 /* CustomUIButton.swift in Sources */,
 				F3D7277723466E110086C131 /* ViewController.swift in Sources */,
 				F3D7278A23466E6F0086C131 /* Dawg.swift in Sources */,

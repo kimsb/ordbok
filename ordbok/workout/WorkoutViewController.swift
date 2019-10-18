@@ -8,8 +8,7 @@
 
 import UIKit
 
-class WorkoutViewController: UIViewController {
-    
+class WorkoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIPopoverPresentationControllerDelegate {
     @IBOutlet weak var presufBaseCountSeg: UISegmentedControl!
     @IBOutlet weak var presufModeSeg: UISegmentedControl!
     @IBOutlet weak var presufExclusiveSeg: UISegmentedControl!
@@ -18,8 +17,16 @@ class WorkoutViewController: UIViewController {
     @IBOutlet weak var feedbackLabel: UILabel!
     @IBOutlet weak var userInputTextField: UITextField!
     @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var customListsTextField: UITextField!
+    @IBOutlet weak var createListButton: UIButton!
+    @IBOutlet weak var deleteListButton: UIButton!
+    @IBOutlet weak var wrongAnswerButton: UIButton!
+    @IBOutlet weak var rightAnswerButton: UIButton!
+    let uiPickerView = UIPickerView()
+    var customListKeys: [String] = []
     var isExclusive: Bool!
     var isPrefix: Bool!
+    var selectedCustomList: String?
     
     var question: Question?
     
@@ -31,33 +38,103 @@ class WorkoutViewController: UIViewController {
             presufModeSeg.selectedSegmentIndex = loadedWorkoutSettings.presufModeSelect
             presufExclusiveSeg.selectedSegmentIndex = loadedWorkoutSettings.presufExclusiveSelect
             presufOrListsSeg.selectedSegmentIndex = loadedWorkoutSettings.presufOrListsSelect
+            selectedCustomList = loadedWorkoutSettings.selectedCustomList
         }
-        
+        loadPicker()
+        hideUIElements()
         isPrefix = presufModeSeg.selectedSegmentIndex == 0
         isExclusive = presufExclusiveSeg.selectedSegmentIndex == 0
         updateQuestions()
-        userInputTextField.becomeFirstResponder()
+        if (presufOrListsSeg.selectedSegmentIndex == 0) {
+            userInputTextField.becomeFirstResponder()
+        }
+    }
+    
+    func loadPicker(listName: String? = nil) {
+        customListKeys = Ordlister.shared.getCustomLists().keys.sorted()
+        uiPickerView.delegate = self
+        customListsTextField.inputView = uiPickerView
+        if (customListKeys.isEmpty) {
+            customListsTextField.isUserInteractionEnabled = false
+        } else {
+            customListsTextField.isUserInteractionEnabled = customListKeys.count > 1
+            if (listName != nil) {
+                customListsTextField.text = listName!
+            } else if (selectedCustomList != nil) {
+                customListsTextField.text = selectedCustomList!
+            } else {
+                customListsTextField.text = customListKeys.first!
+            }
+            uiPickerView.selectRow(customListKeys.index(of: customListsTextField.text!)!, inComponent: 0, animated: false)
+        }
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return customListKeys.count
+    }
+    
+    func pickerView( _ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return customListKeys[row]
+    }
+    
+    func pickerView( _ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        customListsTextField.text = customListKeys[row]
+        selectedCustomList = customListKeys[row]
+        saveSettings()
+        updateQuestions()
+        self.view.endEditing(true)
+    }
+    
+    func hideUIElements() {
+        let hideCustomLists = presufOrListsSeg.selectedSegmentIndex == 0
+        customListsTextField.isHidden = hideCustomLists
+        createListButton.isHidden = hideCustomLists
+        deleteListButton.isHidden = hideCustomLists
+        wrongAnswerButton.isHidden = hideCustomLists
+        rightAnswerButton.isHidden = hideCustomLists
+        presufBaseCountSeg.isHidden = !hideCustomLists
+        presufModeSeg.isHidden = !hideCustomLists
+        presufExclusiveSeg.isHidden = !hideCustomLists
     }
     
     func saveSettings() {
-        let workoutSettings = WorkoutSettings(presufBaseCountSelect: presufBaseCountSeg.selectedSegmentIndex, presufModeSelect: presufModeSeg.selectedSegmentIndex, presufExclusiveSelect: presufExclusiveSeg.selectedSegmentIndex, presufOrListsSelect: presufOrListsSeg.selectedSegmentIndex)
-        NSKeyedArchiver.archiveRootObject(workoutSettings, toFile: WorkoutSettings.ArchiveURL.path)
+        let workoutSettings = WorkoutSettings(presufBaseCountSelect: self.presufBaseCountSeg.selectedSegmentIndex, presufModeSelect: self.presufModeSeg.selectedSegmentIndex, presufExclusiveSelect: self.presufExclusiveSeg.selectedSegmentIndex, presufOrListsSelect: self.presufOrListsSeg.selectedSegmentIndex, selectedCustomList: self.selectedCustomList)
+        DispatchQueue.global(qos: .userInitiated).async {
+            NSKeyedArchiver.archiveRootObject(workoutSettings, toFile: WorkoutSettings.ArchiveURL.path)
+        }
     }
     
-    private func getQuestions() -> Questions {
-        return Ordlister.shared.getQuestions(isPrefix: isPrefix, isExclusive: isExclusive, baseCount: presufBaseCountSeg.selectedSegmentIndex + 2)!
+    private func getQuestions() -> Questions? {
+        return presufOrListsSeg.selectedSegmentIndex == 0
+            ? Ordlister.shared.getPreSufQuestions(isPrefix: isPrefix, isExclusive: isExclusive, baseCount: presufBaseCountSeg.selectedSegmentIndex + 2)!
+            : Ordlister.shared.getCustomLists()[customListsTextField.text!] ?? nil
     }
     
     func showNextQuestion(correctAnswer: Bool? = nil) {
         if let correctAnswer = correctAnswer {
             question!.setTimeToShow(answeredCorrect: correctAnswer)
-            question = getQuestions().getNextQuestion(lastQuestion: question)
+            question = getQuestions()!.getNextQuestion(lastQuestion: question)
         } else {
-            question = getQuestions().getNextQuestion()
+            question = getQuestions()?.getNextQuestion()
         }
-        wordLabel.text = "\(isPrefix ? "?" : "")\(question!.hint)\(isPrefix ? "" : "?")"
+        wordLabel.text = presufOrListsSeg.selectedSegmentIndex == 0
+            ? "\(isPrefix ? "?" : "")\(question!.hint)\(isPrefix ? "" : "?")"
+            : question?.hint ?? ""
         userInputTextField.text = ""
-        countLabel.text = "Nye: \(getQuestions().newQuestions.count), sett: \(getQuestions().seenQuestions.count)"
+        if (question == nil) {
+            countLabel.text = ""
+            rightAnswerButton.isHidden = true
+        } else {
+            countLabel.text = "Nye: \(getQuestions()!.newQuestions.count), sett: \(getQuestions()!.seenQuestions.count)"
+            rightAnswerButton.isHidden = presufOrListsSeg.selectedSegmentIndex == 0
+            rightAnswerButton.setTitle("Vis svar", for: .normal)
+        }
+        wrongAnswerButton.setTitle("", for: .normal)
+        wrongAnswerButton.isUserInteractionEnabled = false
     }
     
     func updateQuestions() {
@@ -84,23 +161,12 @@ class WorkoutViewController: UIViewController {
     
     @IBAction func presufOrListsChanged(_ sender: Any) {
         if (presufOrListsSeg.selectedSegmentIndex == 0) {
-            updateQuestions()
-            feedbackLabel.text = ""
+            userInputTextField.becomeFirstResponder()
         } else {
-            wordLabel.text = "Ikke laget ennå."
-            
-            if #available(iOS 13.0, *) {
-                if traitCollection.userInterfaceStyle == .light {
-                    feedbackLabel.textColor = UIColor.black
-                } else {
-                    feedbackLabel.textColor = UIColor.white
-                }
-            } else {
-                feedbackLabel.textColor = UIColor.black
-            }
-            
-            feedbackLabel.text = "Ikke vær så utålmodig, a..."
+            self.view.endEditing(true)
         }
+        hideUIElements()
+        updateQuestions()
         saveSettings()
     }
     
@@ -130,8 +196,6 @@ class WorkoutViewController: UIViewController {
                 wordLabel.text = "\(question!.hint) ? (\(userInput))"
             }
         }
-        
-        
     }
     
     @IBAction func userPressedEnter(_ sender: Any) {
@@ -165,7 +229,9 @@ class WorkoutViewController: UIViewController {
     
     @objc func prepareForInput() {
         userInputTextField.text = ""
-        userInputTextField.becomeFirstResponder()
+        if (presufOrListsSeg.selectedSegmentIndex == 0) {
+            userInputTextField.becomeFirstResponder()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -177,14 +243,73 @@ class WorkoutViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "popover" {
+            let destination = segue.destination
+            if let popover = destination.popoverPresentationController {
+                popover.delegate = self
+            }
+        }
+    }
+    
+    func makeListPopOverDismissed(listName: String? = nil) {
+        if (listName != nil) {
+            loadPicker(listName: listName)
+            self.feedbackLabel.text = ""
+            self.saveSettings()
+            self.showNextQuestion()
+            self.view.endEditing(true)
+        }
+    }
+    
+    @IBAction func deleteList(_ sender: Any) {
+        if (customListsTextField.text! != "") {
+            let alert = UIAlertController(title: "Er du sikker?", message: "Vil du slette listen: \"\(customListsTextField.text!)\"?", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in                    Ordlister.shared.deleteCustomList(name: self.customListsTextField.text!)
+                self.customListKeys = Ordlister.shared.getCustomLists().keys.sorted()
+                self.selectedCustomList = self.customListKeys.first
+                self.customListsTextField.text = self.selectedCustomList
+                self.loadPicker()
+                self.feedbackLabel.text = ""
+                self.saveSettings()
+                self.showNextQuestion()
+            }))
+            alert.addAction(UIAlertAction(title: "Avbryt", style: .cancel, handler: { (action: UIAlertAction!) in
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    @IBAction func wrongAnswerAction(_ sender: Any) {
+        let answers = question!.answer.joined(separator: ", ")
+        feedbackLabel.textColor = UIColor.red
+        feedbackLabel.text = "\u{2717} Feil! Riktig svar: \(answers)"
+        showNextQuestion(correctAnswer: false)
+    }
+    @IBAction func rightAnswerButton(_ sender: Any) {
+        let answers = question!.answer.joined(separator: ", ")
+        if (rightAnswerButton.titleLabel?.text! == "Vis svar") {
+            if #available(iOS 13.0, *) {
+                if traitCollection.userInterfaceStyle == .light {
+                    feedbackLabel.textColor = UIColor.black
+                } else {
+                    feedbackLabel.textColor = UIColor.white
+                }
+            } else {
+                feedbackLabel.textColor = UIColor.black
+            }
+            feedbackLabel.text = answers
+            wrongAnswerButton.setTitle("\u{2717} nope...", for: .normal)
+            wrongAnswerButton.isUserInteractionEnabled = true
+            rightAnswerButton.setTitle("\u{2713} YES!", for: .normal)
+        } else {
+            wrongAnswerButton.setTitle("", for: .normal)
+            wrongAnswerButton.isUserInteractionEnabled = false
+            rightAnswerButton.setTitle("Vis svar", for: .normal)
+            feedbackLabel.textColor = UIColor.green
+            feedbackLabel.text = "\u{2713} Riktig! \(answers)"
+            showNextQuestion(correctAnswer: true)
+        }
+    }
     
 }

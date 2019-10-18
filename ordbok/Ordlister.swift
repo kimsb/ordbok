@@ -14,7 +14,8 @@ class Ordlister {
     
     let nsf: Dawg
     let tanums: Dawg
-    private var allQuestions: [String:[Int:Questions]]
+    private var allPreSuf: [String:[Int:Questions]]
+    private var customLists: [String:Questions]
     
     struct PropertyKey {
         static let prefix = "prefix"
@@ -23,22 +24,39 @@ class Ordlister {
         static let exclusiveSuffix = "exclusiveSuffix"
     }
     
-    func getQuestions(isPrefix: Bool, isExclusive: Bool, baseCount: Int) -> Questions? {
+    func getPreSufQuestions(isPrefix: Bool, isExclusive: Bool, baseCount: Int) -> Questions? {
         if (isPrefix) {
             if (isExclusive) {
-                return allQuestions[PropertyKey.exclusivePrefix]![baseCount]
+                return allPreSuf[PropertyKey.exclusivePrefix]![baseCount]
             }
-            return allQuestions[PropertyKey.prefix]![baseCount]
+            return allPreSuf[PropertyKey.prefix]![baseCount]
         } else {
             if (isExclusive) {
-                return allQuestions[PropertyKey.exclusiveSuffix]![baseCount]
+                return allPreSuf[PropertyKey.exclusiveSuffix]![baseCount]
             }
-            return allQuestions[PropertyKey.suffix]![baseCount]
+            return allPreSuf[PropertyKey.suffix]![baseCount]
         }
     }
     
     func saveQuestions() {
-        NSKeyedArchiver.archiveRootObject(allQuestions, toFile: Questions.ArchiveURL.path)
+        DispatchQueue.global(qos: .userInitiated).async {
+            NSKeyedArchiver.archiveRootObject(self.allPreSuf, toFile: Questions.ArchiveURLPreSuf.path)
+            NSKeyedArchiver.archiveRootObject(self.customLists, toFile: Questions.ArchiveURLCustomLists.path)
+        }
+    }
+    
+    func getCustomLists() -> [String:Questions] {
+        return customLists
+    }
+    
+    func addCustomList(name: String, questions: Questions) {
+        customLists[name] = questions
+        saveQuestions()
+    }
+    
+    func deleteCustomList(name: String) {
+        customLists.removeValue(forKey: name)
+        saveQuestions()
     }
     
     private init() {
@@ -46,14 +64,20 @@ class Ordlister {
         nsf = Dawg.load(from: Bundle.main.path(forResource: "nsf2019.bin", ofType: nil)!)!
         tanums = Dawg.load(from: Bundle.main.path(forResource: "tanum.bin", ofType: nil)!)!
         
-        if let loadedQuestions = NSKeyedUnarchiver.unarchiveObject(withFile: Questions.ArchiveURL.path) as? [String:[Int:Questions]] {
-            allQuestions = loadedQuestions
+        if let loadedCustomLists = NSKeyedUnarchiver.unarchiveObject(withFile: Questions.ArchiveURLCustomLists.path) as? [String:Questions] {
+            customLists = loadedCustomLists
         } else {
-            allQuestions = [String:[Int:Questions]]()
-            allQuestions[PropertyKey.prefix] = [Int:Questions]()
-            allQuestions[PropertyKey.exclusivePrefix] = [Int:Questions]()
-            allQuestions[PropertyKey.suffix] = [Int:Questions]()
-            allQuestions[PropertyKey.exclusiveSuffix] = [Int:Questions]()
+            customLists = [String:Questions]()
+        }
+            
+        if let loadedQuestions = NSKeyedUnarchiver.unarchiveObject(withFile: Questions.ArchiveURLPreSuf.path) as? [String:[Int:Questions]] {
+            allPreSuf = loadedQuestions
+        } else {
+            allPreSuf = [String:[Int:Questions]]()
+            allPreSuf[PropertyKey.prefix] = [Int:Questions]()
+            allPreSuf[PropertyKey.exclusivePrefix] = [Int:Questions]()
+            allPreSuf[PropertyKey.suffix] = [Int:Questions]()
+            allPreSuf[PropertyKey.exclusiveSuffix] = [Int:Questions]()
             
             //dette tar ca 5 sekunder
             var lettersFromRack:[Character] = ["?"]
@@ -96,15 +120,15 @@ class Ordlister {
                         }
                     }
                 }
-                self.allQuestions[PropertyKey.prefix]![baseCount] = Questions(newQuestions: prefix.sorted(by: { $0.hintScore > $1.hintScore } ))
-                self.allQuestions[PropertyKey.suffix]![baseCount] = Questions(newQuestions: suffix.sorted(by: { $0.hintScore > $1.hintScore } ))
-                self.allQuestions[PropertyKey.exclusivePrefix]![baseCount] = Questions(newQuestions: exclusivePrefix.sorted(by: { $0.hintScore > $1.hintScore } ))
-                self.allQuestions[PropertyKey.exclusiveSuffix]![baseCount] = Questions(newQuestions: exclusiveSuffix.sorted(by: { $0.hintScore > $1.hintScore } ))
+                self.allPreSuf[PropertyKey.prefix]![baseCount] = Questions(newQuestions: prefix.sorted(by: { $0.hintScore > $1.hintScore } ))
+                self.allPreSuf[PropertyKey.suffix]![baseCount] = Questions(newQuestions: suffix.sorted(by: { $0.hintScore > $1.hintScore } ))
+                self.allPreSuf[PropertyKey.exclusivePrefix]![baseCount] = Questions(newQuestions: exclusivePrefix.sorted(by: { $0.hintScore > $1.hintScore } ))
+                self.allPreSuf[PropertyKey.exclusiveSuffix]![baseCount] = Questions(newQuestions: exclusiveSuffix.sorted(by: { $0.hintScore > $1.hintScore } ))
             }
         }
     }
     
-    private func getWordScore(word: String) -> Int {
+    func getWordScore(word: String) -> Int {
         var lettersRemaining = letterCounts
         var sum = 0
         for letter in Array(word) {
