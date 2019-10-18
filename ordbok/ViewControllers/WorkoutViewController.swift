@@ -312,4 +312,9 @@ class WorkoutViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         }
     }
     
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .popover
+        //return .none
+    }
+    
 }

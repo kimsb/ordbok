@@ -16,6 +16,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var input: UITextField!
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var addToListButton: UIButton!
     
     var feedback = ""
     var words = [String]()
@@ -142,6 +143,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         } else {
             feedback = "IKKE GODKJENT"
         }
+        
+        addToListButton.isHidden = !finnesINSF && !finnesITanums
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -224,6 +227,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @objc func prepareForInput() {
         input.becomeFirstResponder()
         input.selectAll(nil)
+        addToListButton.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -234,5 +238,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    @IBAction func addToListButtonPressed(_ sender: Any) {
+        let inputAlpha = String(Array(input.text!.uppercased()).sorted())
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            let coolList = Ordlister.shared.getCustomLists()["- Kule ord -"] ?? Questions(newQuestions: [])
+            if (coolList.newQuestions.filter { $0.hint == inputAlpha }.isEmpty
+                && coolList.seenQuestions.filter { $0.hint == inputAlpha }.isEmpty ) {
+                var anagrams = [String]()
+                if let nsfAnagrammer = Ordlister.shared.nsf.anagrams(withLetters: Array(inputAlpha), wordLength: inputAlpha.count) {
+                    anagrams.append(contentsOf: nsfAnagrammer)
+                }
+                if (inputAlpha.count == 7) {
+                    if let tanumsAnagrammer = Ordlister.shared.tanums.anagrams(withLetters: Array(inputAlpha), wordLength: inputAlpha.count) {
+                        anagrams.append(contentsOf: tanumsAnagrammer)
+                    }
+                }
+                coolList.addQuestion(newQuestion: Question(hint: inputAlpha, answer: anagrams, hintScore: Ordlister.shared.getWordScore(word: inputAlpha)))
+                
+                Ordlister.shared.addCustomList(name: "- Kule ord -", questions: coolList)
+            }
+        }
     }
 }

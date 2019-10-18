@@ -17,6 +17,10 @@ class Questions: NSObject, Codable, NSCoding {
         self.seenQuestions = seenQuestions
     }
     
+    func addQuestion(newQuestion: Question) {
+        newQuestions.append(newQuestion)
+    }
+    
     func getNextQuestion(lastQuestion: Question? = nil) -> Question {
         if let lastQuestion = lastQuestion {
             if (!newQuestions.isEmpty && newQuestions.first!.hint == lastQuestion.hint) {

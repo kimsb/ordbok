@@ -63,13 +63,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F3C7112A23508804006BD07F /* workout */ = {
+		F3C7112A23508804006BD07F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				F3D7277623466E110086C131 /* ViewController.swift */,
 				F3C7112B23508871006BD07F /* WorkoutViewController.swift */,
 				F38FE4672353B5700049F7AA /* CreateListViewController.swift */,
 			);
-			path = workout;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		F3D7276823466E110086C131 = {
@@ -91,10 +92,9 @@
 		F3D7277323466E110086C131 /* ordbok */ = {
 			isa = PBXGroup;
 			children = (
-				F3C7112A23508804006BD07F /* workout */,
+				F3C7112A23508804006BD07F /* ViewControllers */,
 				F3D7278023466E130086C131 /* Info.plist */,
 				F3D7277423466E110086C131 /* AppDelegate.swift */,
-				F3D7277623466E110086C131 /* ViewController.swift */,
 				F3EAE5812347332D002F70A4 /* FeedbackHeader.swift */,
 				F3EAE57F234723B0002F70A4 /* TableViewCell.swift */,
 				F3D7278923466E6F0086C131 /* Dawg.swift */,
@@ -356,14 +356,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = QKQ4UUV4L7;
 				INFOPLIST_FILE = ordbok/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = moomin.kimsordbok;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -378,14 +378,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = QKQ4UUV4L7;
 				INFOPLIST_FILE = ordbok/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = moomin.kimsordbok;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
