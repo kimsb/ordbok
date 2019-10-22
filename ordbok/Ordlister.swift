@@ -45,6 +45,23 @@ class Ordlister {
         }
     }
     
+    func addCoolPresuf(isPrefix: Bool, isExclusive: Bool, questions: Questions) {
+        if (isPrefix) {
+            if (isExclusive) {
+                allPreSuf[PropertyKey.exclusivePrefix]![6] = questions
+            } else {
+                allPreSuf[PropertyKey.prefix]![6] = questions
+            }
+        } else {
+            if (isExclusive) {
+                allPreSuf[PropertyKey.exclusiveSuffix]![6] = questions
+            } else {
+                allPreSuf[PropertyKey.suffix]![6] = questions
+            }
+        }
+        saveQuestions()
+    }
+    
     func getCustomLists() -> [String:Questions] {
         return customLists
     }

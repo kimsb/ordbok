@@ -32,7 +32,7 @@
                                     <constraint firstAttribute="height" constant="68" id="3ta-9P-SIC"/>
                                 </constraints>
                                 <state key="normal" title="Button">
-                                    <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ivq-YM-qaB"/>
@@ -117,7 +117,7 @@
                                         <real key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -135,7 +135,7 @@
                                         <real key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -153,7 +153,7 @@
                                         <real key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -232,6 +232,7 @@
                                     <segment title="3"/>
                                     <segment title="4"/>
                                     <segment title="5"/>
+                                    <segment title="kule"/>
                                 </segments>
                                 <connections>
                                     <action selector="presufBaseCountChanged:" destination="1Jp-Pp-AZU" eventType="valueChanged" id="HQF-jU-fda"/>
@@ -276,7 +277,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMZ-9t-p5g">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="EMZ-9t-p5g">
                                 <rect key="frame" x="16" y="309" width="343" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="8JD-QP-UCN"/>
@@ -289,7 +290,7 @@
                                 <rect key="frame" x="16" y="556" width="343" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                 <connections>
                                     <action selector="userInputChanged:" destination="1Jp-Pp-AZU" eventType="editingChanged" id="LUq-rv-FgQ"/>
                                     <action selector="userPressedEnter:" destination="1Jp-Pp-AZU" eventType="primaryActionTriggered" id="aVQ-uy-qbD"/>
@@ -336,6 +337,13 @@
                                     <action selector="rightAnswerButton:" destination="1Jp-Pp-AZU" eventType="touchUpInside" id="JZP-P9-kGK"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FUB-wq-53i">
+                                <rect key="frame" x="16" y="397" width="343" height="70"/>
+                                <state key="normal" title="Legg til i puggeliste"/>
+                                <connections>
+                                    <action selector="addToListPressed:" destination="1Jp-Pp-AZU" eventType="touchUpInside" id="EQs-FO-d2H"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -351,12 +359,14 @@
                             <constraint firstItem="OOI-8y-Fgb" firstAttribute="top" secondItem="8lq-pS-zKw" secondAttribute="top" constant="16" id="CjH-i5-dCY"/>
                             <constraint firstItem="OOI-8y-Fgb" firstAttribute="leading" secondItem="8lq-pS-zKw" secondAttribute="leading" constant="16" id="Fhp-4p-idv"/>
                             <constraint firstItem="8lq-pS-zKw" firstAttribute="trailing" secondItem="ozE-8h-fBq" secondAttribute="trailing" constant="16" id="GhR-yK-Rnl"/>
+                            <constraint firstItem="FUB-wq-53i" firstAttribute="leading" secondItem="8lq-pS-zKw" secondAttribute="leading" constant="16" id="Gkt-jO-xMi"/>
                             <constraint firstItem="5Hp-oy-ekY" firstAttribute="leading" secondItem="8lq-pS-zKw" secondAttribute="leading" constant="16" id="Hwr-bS-5YU"/>
                             <constraint firstItem="aZZ-fe-1VC" firstAttribute="top" secondItem="ydH-dz-Ufs" secondAttribute="top" id="I4y-TF-cku"/>
                             <constraint firstItem="EMZ-9t-p5g" firstAttribute="leading" secondItem="8lq-pS-zKw" secondAttribute="leading" constant="16" id="J07-Ha-Lgo"/>
                             <constraint firstItem="Lui-vc-JAJ" firstAttribute="width" secondItem="Mqe-RX-8fa" secondAttribute="width" id="M1c-yA-n8u"/>
                             <constraint firstItem="aSz-td-cjd" firstAttribute="height" secondItem="aZZ-fe-1VC" secondAttribute="height" id="MLj-C6-GcN"/>
                             <constraint firstItem="aSz-td-cjd" firstAttribute="bottom" secondItem="F56-4b-jtc" secondAttribute="bottom" id="NTA-V7-x1y"/>
+                            <constraint firstItem="FUB-wq-53i" firstAttribute="top" secondItem="EMZ-9t-p5g" secondAttribute="bottom" constant="8" id="Naz-Vc-Fd3"/>
                             <constraint firstItem="Lui-vc-JAJ" firstAttribute="height" secondItem="aZZ-fe-1VC" secondAttribute="height" id="OX7-jb-oNg"/>
                             <constraint firstItem="HGb-ci-LHP" firstAttribute="top" secondItem="F56-4b-jtc" secondAttribute="bottom" constant="45" id="QYx-w7-dZZ"/>
                             <constraint firstItem="8lq-pS-zKw" firstAttribute="trailing" secondItem="CKT-uz-lhg" secondAttribute="trailing" constant="16" id="USz-z0-xhS"/>
@@ -368,6 +378,7 @@
                             <constraint firstItem="8lq-pS-zKw" firstAttribute="trailing" secondItem="HGb-ci-LHP" secondAttribute="trailing" constant="16" id="bGq-dq-Qfi"/>
                             <constraint firstItem="F56-4b-jtc" firstAttribute="top" secondItem="ydH-dz-Ufs" secondAttribute="bottom" constant="8" id="cFH-LN-1bG"/>
                             <constraint firstItem="HGb-ci-LHP" firstAttribute="leading" secondItem="8lq-pS-zKw" secondAttribute="leading" constant="16" id="dAw-Px-vr6"/>
+                            <constraint firstItem="Lui-vc-JAJ" firstAttribute="height" secondItem="Mqe-RX-8fa" secondAttribute="height" id="dJy-Qu-BBV"/>
                             <constraint firstItem="8lq-pS-zKw" firstAttribute="trailing" secondItem="Lui-vc-JAJ" secondAttribute="trailing" constant="16" id="gLP-Fc-fkr"/>
                             <constraint firstItem="aZZ-fe-1VC" firstAttribute="top" secondItem="5Hp-oy-ekY" secondAttribute="bottom" constant="5" id="hGh-WT-kwi"/>
                             <constraint firstItem="Mqe-RX-8fa" firstAttribute="top" secondItem="EMZ-9t-p5g" secondAttribute="bottom" constant="8" id="jQA-E5-zzk"/>
@@ -377,8 +388,10 @@
                             <constraint firstItem="CKT-uz-lhg" firstAttribute="leading" secondItem="8lq-pS-zKw" secondAttribute="leading" constant="16" id="pmc-3t-tuF"/>
                             <constraint firstItem="8lq-pS-zKw" firstAttribute="trailing" secondItem="EMZ-9t-p5g" secondAttribute="trailing" constant="16" id="qOP-SQ-NEl"/>
                             <constraint firstItem="8lq-pS-zKw" firstAttribute="trailing" secondItem="ydH-dz-Ufs" secondAttribute="trailing" constant="16" id="qtx-gV-EPD"/>
+                            <constraint firstItem="FUB-wq-53i" firstAttribute="height" secondItem="Mqe-RX-8fa" secondAttribute="height" id="sOS-DX-pbC"/>
                             <constraint firstItem="aSz-td-cjd" firstAttribute="height" secondItem="aZZ-fe-1VC" secondAttribute="height" id="ufb-BI-7li"/>
                             <constraint firstItem="CKT-uz-lhg" firstAttribute="top" secondItem="OOI-8y-Fgb" secondAttribute="bottom" constant="8" id="vVr-ru-fU7"/>
+                            <constraint firstItem="8lq-pS-zKw" firstAttribute="trailing" secondItem="FUB-wq-53i" secondAttribute="trailing" constant="16" id="wJc-zf-Rxw"/>
                             <constraint firstItem="Lui-vc-JAJ" firstAttribute="height" secondItem="Mqe-RX-8fa" secondAttribute="height" id="x9N-XI-rXE"/>
                             <constraint firstItem="Lui-vc-JAJ" firstAttribute="leading" secondItem="Mqe-RX-8fa" secondAttribute="trailing" constant="8" id="xL3-EQ-c8k"/>
                             <constraint firstItem="F56-4b-jtc" firstAttribute="leading" secondItem="8lq-pS-zKw" secondAttribute="leading" constant="16" id="ych-do-Shu"/>
@@ -388,6 +401,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="workout" id="R3u-QA-Al7"/>
                     <connections>
+                        <outlet property="addToListButton" destination="FUB-wq-53i" id="MMe-3D-f6C"/>
                         <outlet property="countLabel" destination="ozE-8h-fBq" id="4eS-oB-ENE"/>
                         <outlet property="createListButton" destination="aZZ-fe-1VC" id="ydb-xp-4ua"/>
                         <outlet property="customListsTextField" destination="5Hp-oy-ekY" id="v7W-GY-nQT"/>

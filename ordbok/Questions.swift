@@ -18,7 +18,12 @@ class Questions: NSObject, Codable, NSCoding {
     }
     
     func addQuestion(newQuestion: Question) {
-        newQuestions.append(newQuestion)
+        if (newQuestions.filter { $0.hint == newQuestion.hint }.count == 0
+            && seenQuestions.filter { $0.hint == newQuestion.hint }.count == 0) {
+            newQuestions.append(newQuestion)
+        } else {
+            print("question already exists")
+        }
     }
     
     func getNextQuestion(lastQuestion: Question? = nil) -> Question {

@@ -22,6 +22,7 @@ class WorkoutViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBOutlet weak var deleteListButton: UIButton!
     @IBOutlet weak var wrongAnswerButton: UIButton!
     @IBOutlet weak var rightAnswerButton: UIButton!
+    @IBOutlet weak var addToListButton: UIButton!
     let uiPickerView = UIPickerView()
     var customListKeys: [String] = []
     var isExclusive: Bool!
@@ -29,6 +30,7 @@ class WorkoutViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     var selectedCustomList: String?
     
     var question: Question?
+    var lastQuestion: Question?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,6 +98,7 @@ class WorkoutViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         deleteListButton.isHidden = hideCustomLists
         wrongAnswerButton.isHidden = hideCustomLists
         rightAnswerButton.isHidden = hideCustomLists
+        addToListButton.isHidden = hideCustomLists
         presufBaseCountSeg.isHidden = !hideCustomLists
         presufModeSeg.isHidden = !hideCustomLists
         presufExclusiveSeg.isHidden = !hideCustomLists
@@ -116,9 +119,11 @@ class WorkoutViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     func showNextQuestion(correctAnswer: Bool? = nil) {
         if let correctAnswer = correctAnswer {
+            lastQuestion = question
             question!.setTimeToShow(answeredCorrect: correctAnswer)
             question = getQuestions()!.getNextQuestion(lastQuestion: question)
         } else {
+            lastQuestion = nil
             question = getQuestions()?.getNextQuestion()
         }
         wordLabel.text = presufOrListsSeg.selectedSegmentIndex == 0
@@ -138,7 +143,13 @@ class WorkoutViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     func updateQuestions() {
+        let coolPresufExists = Ordlister.shared.getPreSufQuestions(isPrefix: isPrefix, isExclusive: isExclusive, baseCount: 6) != nil
+        if (!coolPresufExists && presufBaseCountSeg.selectedSegmentIndex == 4) {
+            presufBaseCountSeg.selectedSegmentIndex = 3
+        }
+        presufBaseCountSeg.setEnabled(coolPresufExists, forSegmentAt: 4)
         showNextQuestion()
+        addToListButton.isHidden = true
         feedbackLabel.text = ""
     }
     
@@ -175,6 +186,7 @@ class WorkoutViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         let correctWord = isPrefix ? "\(question!.answer.first ?? "")\(question!.hint)" : "\(question!.hint)\(question!.answer.first ?? "")"
         
         if (isExclusive) {
+            addToListButton.isHidden = presufBaseCountSeg.selectedSegmentIndex == 4
             if (question!.answer.first! == userInput) {
                 feedbackLabel.textColor = UIColor.green
                 feedbackLabel.text = "\u{2713} \(correctWord) er riktig!"
@@ -199,6 +211,7 @@ class WorkoutViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     @IBAction func userPressedEnter(_ sender: Any) {
+        addToListButton.isHidden = false
         let inputArray = Array(userInputTextField.text!.uppercased()).sorted()
         if (inputArray.count == question!.answer.count) {
             var noWrongAnswers = true
@@ -219,10 +232,30 @@ class WorkoutViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             }
         }
         feedbackLabel.textColor = UIColor.red
+        
+        let inputStringArray = inputArray.map { String($0) }
+        let inputAsJoinedString = inputStringArray.joined(separator: ", ")
+        let attributedInput = NSMutableAttributedString(string: inputAsJoinedString)
+        let attributedFeedback = NSMutableAttributedString(string: "Du skrev\(inputStringArray.isEmpty ? " ingenting" : ": ")")
+        
+        for letter in inputStringArray {
+            if (!question!.answer.contains(letter)) {
+                let range = (inputAsJoinedString as NSString).range(of: " \(letter)")
+                attributedInput.addAttribute(NSAttributedString.Key.strikethroughStyle,
+                                     value: NSUnderlineStyle.single.rawValue,
+                                     range: range)
+            }
+        }
+        attributedFeedback.append(attributedInput)
+                
         if (question!.answer.count == 0) {
-            feedbackLabel.text = "\u{2717} Feil! \(question!.hint) har ingen \(isPrefix ? "prefix" : "suffix")..."
+            let feedbackEnd = ",\nmen \(question!.hint) har ingen \(isPrefix ? "prefix" : "suffix")..."
+            attributedFeedback.append(NSMutableAttributedString(string: feedbackEnd))
+            feedbackLabel.attributedText = attributedFeedback
         } else {
-            feedbackLabel.text = "\u{2717} Riktig\(question!.answer.count > 1 ? "e" : "") \(isPrefix ? "prefix" : "suffix") for \(question!.hint): \(question!.answer.joined(separator: ", "))"
+            let feedbackEnd = ",\nriktig\(question!.answer.count > 1 ? "e" : "") \(isPrefix ? "prefix" : "suffix") for \(question!.hint): \(question!.answer.joined(separator: ", "))"
+            attributedFeedback.append(NSMutableAttributedString(string: feedbackEnd))
+            feedbackLabel.attributedText = attributedFeedback
         }
         showNextQuestion(correctAnswer: false)
     }
@@ -310,6 +343,26 @@ class WorkoutViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             feedbackLabel.text = "\u{2713} Riktig! \(answers)"
             showNextQuestion(correctAnswer: true)
         }
+    }
+    
+    @IBAction func addToListPressed(_ sender: Any) {
+        if lastQuestion == nil {
+            return
+        }
+        if let storedCoolInexclusivePresuf = Ordlister.shared.getPreSufQuestions(isPrefix: isPrefix, isExclusive: false, baseCount: 6) {
+            storedCoolInexclusivePresuf.addQuestion(newQuestion: lastQuestion!)
+            Ordlister.shared.addCoolPresuf(isPrefix: isPrefix, isExclusive: false, questions: storedCoolInexclusivePresuf)
+            if let storedCoolExclusivePresuf = Ordlister.shared.getPreSufQuestions(isPrefix: isPrefix, isExclusive: false, baseCount: 6) {
+                storedCoolExclusivePresuf.addQuestion(newQuestion: lastQuestion!)
+                Ordlister.shared.addCoolPresuf(isPrefix: isPrefix, isExclusive: true, questions: storedCoolInexclusivePresuf)
+            }
+        } else {
+            Ordlister.shared.addCoolPresuf(isPrefix: isPrefix, isExclusive: false, questions: Questions(newQuestions: [lastQuestion!]))
+            if (isExclusive) {
+                Ordlister.shared.addCoolPresuf(isPrefix: isPrefix, isExclusive: true, questions: Questions(newQuestions: [lastQuestion!]))
+            }
+        }
+        presufBaseCountSeg.setEnabled(true, forSegmentAt: 4)
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
