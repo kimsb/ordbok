@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ixD-Kb-cjy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ixD-Kb-cjy">
     <device id="retina4_7" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -337,19 +337,22 @@
                                     <action selector="rightAnswerButton:" destination="1Jp-Pp-AZU" eventType="touchUpInside" id="JZP-P9-kGK"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FUB-wq-53i">
-                                <rect key="frame" x="16" y="397" width="343" height="70"/>
-                                <state key="normal" title="Legg til i puggeliste"/>
-                                <connections>
-                                    <action selector="addToListPressed:" destination="1Jp-Pp-AZU" eventType="touchUpInside" id="EQs-FO-d2H"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Sist vist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="35N-Qq-8kK">
                                 <rect key="frame" x="16" y="232" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FUB-wq-53i">
+                                <rect key="frame" x="16" y="367" width="343" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="cnr-mP-21q"/>
+                                </constraints>
+                                <state key="normal" title="Legg til i puggeliste"/>
+                                <connections>
+                                    <action selector="addToListPressed:" destination="1Jp-Pp-AZU" eventType="touchUpInside" id="EQs-FO-d2H"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -373,7 +376,6 @@
                             <constraint firstItem="Lui-vc-JAJ" firstAttribute="width" secondItem="Mqe-RX-8fa" secondAttribute="width" id="M1c-yA-n8u"/>
                             <constraint firstItem="aSz-td-cjd" firstAttribute="height" secondItem="aZZ-fe-1VC" secondAttribute="height" id="MLj-C6-GcN"/>
                             <constraint firstItem="aSz-td-cjd" firstAttribute="bottom" secondItem="F56-4b-jtc" secondAttribute="bottom" id="NTA-V7-x1y"/>
-                            <constraint firstItem="FUB-wq-53i" firstAttribute="top" secondItem="EMZ-9t-p5g" secondAttribute="bottom" constant="8" id="Naz-Vc-Fd3"/>
                             <constraint firstItem="Lui-vc-JAJ" firstAttribute="height" secondItem="aZZ-fe-1VC" secondAttribute="height" id="OX7-jb-oNg"/>
                             <constraint firstItem="35N-Qq-8kK" firstAttribute="top" secondItem="ozE-8h-fBq" secondAttribute="bottom" id="PKs-xl-djT"/>
                             <constraint firstItem="HGb-ci-LHP" firstAttribute="top" secondItem="F56-4b-jtc" secondAttribute="bottom" constant="45" id="QYx-w7-dZZ"/>
@@ -389,6 +391,7 @@
                             <constraint firstItem="HGb-ci-LHP" firstAttribute="leading" secondItem="8lq-pS-zKw" secondAttribute="leading" constant="16" id="dAw-Px-vr6"/>
                             <constraint firstItem="Lui-vc-JAJ" firstAttribute="height" secondItem="Mqe-RX-8fa" secondAttribute="height" id="dJy-Qu-BBV"/>
                             <constraint firstItem="8lq-pS-zKw" firstAttribute="trailing" secondItem="Lui-vc-JAJ" secondAttribute="trailing" constant="16" id="gLP-Fc-fkr"/>
+                            <constraint firstItem="FUB-wq-53i" firstAttribute="top" secondItem="HGb-ci-LHP" secondAttribute="bottom" constant="66" id="gah-fv-oO1"/>
                             <constraint firstItem="aZZ-fe-1VC" firstAttribute="top" secondItem="5Hp-oy-ekY" secondAttribute="bottom" constant="5" id="hGh-WT-kwi"/>
                             <constraint firstItem="8lq-pS-zKw" firstAttribute="trailing" secondItem="35N-Qq-8kK" secondAttribute="trailing" constant="16" id="in4-rz-3Jo"/>
                             <constraint firstItem="Mqe-RX-8fa" firstAttribute="top" secondItem="EMZ-9t-p5g" secondAttribute="bottom" constant="8" id="jQA-E5-zzk"/>
@@ -398,7 +401,6 @@
                             <constraint firstItem="CKT-uz-lhg" firstAttribute="leading" secondItem="8lq-pS-zKw" secondAttribute="leading" constant="16" id="pmc-3t-tuF"/>
                             <constraint firstItem="8lq-pS-zKw" firstAttribute="trailing" secondItem="EMZ-9t-p5g" secondAttribute="trailing" constant="16" id="qOP-SQ-NEl"/>
                             <constraint firstItem="8lq-pS-zKw" firstAttribute="trailing" secondItem="ydH-dz-Ufs" secondAttribute="trailing" constant="16" id="qtx-gV-EPD"/>
-                            <constraint firstItem="FUB-wq-53i" firstAttribute="height" secondItem="Mqe-RX-8fa" secondAttribute="height" id="sOS-DX-pbC"/>
                             <constraint firstItem="aSz-td-cjd" firstAttribute="height" secondItem="aZZ-fe-1VC" secondAttribute="height" id="ufb-BI-7li"/>
                             <constraint firstItem="CKT-uz-lhg" firstAttribute="top" secondItem="OOI-8y-Fgb" secondAttribute="bottom" constant="8" id="vVr-ru-fU7"/>
                             <constraint firstItem="8lq-pS-zKw" firstAttribute="trailing" secondItem="FUB-wq-53i" secondAttribute="trailing" constant="16" id="wJc-zf-Rxw"/>

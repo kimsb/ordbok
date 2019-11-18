@@ -31,7 +31,7 @@ class Question: NSObject, Codable, NSCoding {
             timeToShow = Calendar.current.date(byAdding: .day, value: daysToAdd, to: Date())!
             daysToAdd *= 2
         } else {
-            timeToShow = Calendar.current.date(byAdding: .minute, value: 5, to: Date())!
+            timeToShow = Date()
             daysToAdd = 3
         }
     }
