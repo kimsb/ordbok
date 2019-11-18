@@ -32,7 +32,7 @@
                                     <constraint firstAttribute="height" constant="68" id="3ta-9P-SIC"/>
                                 </constraints>
                                 <state key="normal" title="Button">
-                                    <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ivq-YM-qaB"/>
@@ -117,7 +117,7 @@
                                         <real key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -135,7 +135,7 @@
                                         <real key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -153,7 +153,7 @@
                                         <real key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -296,8 +296,8 @@
                                     <action selector="userPressedEnter:" destination="1Jp-Pp-AZU" eventType="primaryActionTriggered" id="aVQ-uy-qbD"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozE-8h-fBq">
-                                <rect key="frame" x="16" y="214" width="343" height="0.0"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Count" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozE-8h-fBq">
+                                <rect key="frame" x="16" y="214" width="343" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -344,6 +344,12 @@
                                     <action selector="addToListPressed:" destination="1Jp-Pp-AZU" eventType="touchUpInside" id="EQs-FO-d2H"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Sist vist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="35N-Qq-8kK">
+                                <rect key="frame" x="16" y="232" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -357,6 +363,7 @@
                             <constraint firstItem="aSz-td-cjd" firstAttribute="leading" secondItem="aZZ-fe-1VC" secondAttribute="trailing" constant="8" id="BfS-dg-GYz"/>
                             <constraint firstItem="ydH-dz-Ufs" firstAttribute="leading" secondItem="8lq-pS-zKw" secondAttribute="leading" constant="16" id="BkC-Pg-CuD"/>
                             <constraint firstItem="OOI-8y-Fgb" firstAttribute="top" secondItem="8lq-pS-zKw" secondAttribute="top" constant="16" id="CjH-i5-dCY"/>
+                            <constraint firstItem="35N-Qq-8kK" firstAttribute="leading" secondItem="8lq-pS-zKw" secondAttribute="leading" constant="16" id="ESN-ZR-eiz"/>
                             <constraint firstItem="OOI-8y-Fgb" firstAttribute="leading" secondItem="8lq-pS-zKw" secondAttribute="leading" constant="16" id="Fhp-4p-idv"/>
                             <constraint firstItem="8lq-pS-zKw" firstAttribute="trailing" secondItem="ozE-8h-fBq" secondAttribute="trailing" constant="16" id="GhR-yK-Rnl"/>
                             <constraint firstItem="FUB-wq-53i" firstAttribute="leading" secondItem="8lq-pS-zKw" secondAttribute="leading" constant="16" id="Gkt-jO-xMi"/>
@@ -368,7 +375,9 @@
                             <constraint firstItem="aSz-td-cjd" firstAttribute="bottom" secondItem="F56-4b-jtc" secondAttribute="bottom" id="NTA-V7-x1y"/>
                             <constraint firstItem="FUB-wq-53i" firstAttribute="top" secondItem="EMZ-9t-p5g" secondAttribute="bottom" constant="8" id="Naz-Vc-Fd3"/>
                             <constraint firstItem="Lui-vc-JAJ" firstAttribute="height" secondItem="aZZ-fe-1VC" secondAttribute="height" id="OX7-jb-oNg"/>
+                            <constraint firstItem="35N-Qq-8kK" firstAttribute="top" secondItem="ozE-8h-fBq" secondAttribute="bottom" id="PKs-xl-djT"/>
                             <constraint firstItem="HGb-ci-LHP" firstAttribute="top" secondItem="F56-4b-jtc" secondAttribute="bottom" constant="45" id="QYx-w7-dZZ"/>
+                            <constraint firstItem="HGb-ci-LHP" firstAttribute="top" secondItem="35N-Qq-8kK" secondAttribute="bottom" id="Qre-wd-uhg"/>
                             <constraint firstItem="8lq-pS-zKw" firstAttribute="trailing" secondItem="CKT-uz-lhg" secondAttribute="trailing" constant="16" id="USz-z0-xhS"/>
                             <constraint firstItem="aSz-td-cjd" firstAttribute="width" secondItem="aZZ-fe-1VC" secondAttribute="width" id="Vvj-lh-ggQ"/>
                             <constraint firstItem="8lq-pS-zKw" firstAttribute="trailing" secondItem="OOI-8y-Fgb" secondAttribute="trailing" constant="16" id="Wvd-p4-LBD"/>
@@ -381,9 +390,10 @@
                             <constraint firstItem="Lui-vc-JAJ" firstAttribute="height" secondItem="Mqe-RX-8fa" secondAttribute="height" id="dJy-Qu-BBV"/>
                             <constraint firstItem="8lq-pS-zKw" firstAttribute="trailing" secondItem="Lui-vc-JAJ" secondAttribute="trailing" constant="16" id="gLP-Fc-fkr"/>
                             <constraint firstItem="aZZ-fe-1VC" firstAttribute="top" secondItem="5Hp-oy-ekY" secondAttribute="bottom" constant="5" id="hGh-WT-kwi"/>
+                            <constraint firstItem="8lq-pS-zKw" firstAttribute="trailing" secondItem="35N-Qq-8kK" secondAttribute="trailing" constant="16" id="in4-rz-3Jo"/>
                             <constraint firstItem="Mqe-RX-8fa" firstAttribute="top" secondItem="EMZ-9t-p5g" secondAttribute="bottom" constant="8" id="jQA-E5-zzk"/>
                             <constraint firstItem="8lq-pS-zKw" firstAttribute="trailing" secondItem="5Hp-oy-ekY" secondAttribute="trailing" constant="16" id="jga-Br-iBi"/>
-                            <constraint firstItem="ozE-8h-fBq" firstAttribute="top" secondItem="F56-4b-jtc" secondAttribute="bottom" constant="6" id="nEU-qR-AbZ"/>
+                            <constraint firstItem="ozE-8h-fBq" firstAttribute="top" secondItem="F56-4b-jtc" secondAttribute="bottom" constant="4" id="nEU-qR-AbZ"/>
                             <constraint firstItem="Lui-vc-JAJ" firstAttribute="leading" secondItem="Mqe-RX-8fa" secondAttribute="trailing" constant="8" id="pXM-R9-clg"/>
                             <constraint firstItem="CKT-uz-lhg" firstAttribute="leading" secondItem="8lq-pS-zKw" secondAttribute="leading" constant="16" id="pmc-3t-tuF"/>
                             <constraint firstItem="8lq-pS-zKw" firstAttribute="trailing" secondItem="EMZ-9t-p5g" secondAttribute="trailing" constant="16" id="qOP-SQ-NEl"/>
@@ -407,6 +417,7 @@
                         <outlet property="customListsTextField" destination="5Hp-oy-ekY" id="v7W-GY-nQT"/>
                         <outlet property="deleteListButton" destination="aSz-td-cjd" id="UyJ-JS-Aoe"/>
                         <outlet property="feedbackLabel" destination="EMZ-9t-p5g" id="Epb-1H-vY1"/>
+                        <outlet property="lastShownLabel" destination="35N-Qq-8kK" id="plo-zp-o2g"/>
                         <outlet property="presufBaseCountSeg" destination="CKT-uz-lhg" id="GmB-ml-26i"/>
                         <outlet property="presufExclusiveSeg" destination="F56-4b-jtc" id="MHH-Zq-ijw"/>
                         <outlet property="presufModeSeg" destination="ydH-dz-Ufs" id="8Ur-1I-Li5"/>

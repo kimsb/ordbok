@@ -17,6 +17,7 @@ class WorkoutViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBOutlet weak var feedbackLabel: UILabel!
     @IBOutlet weak var userInputTextField: UITextField!
     @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var lastShownLabel: UILabel!
     @IBOutlet weak var customListsTextField: UITextField!
     @IBOutlet weak var createListButton: UIButton!
     @IBOutlet weak var deleteListButton: UIButton!
@@ -132,14 +133,40 @@ class WorkoutViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         userInputTextField.text = ""
         if (question == nil) {
             countLabel.text = ""
+            lastShownLabel.text = ""
             rightAnswerButton.isHidden = true
         } else {
+            if (question!.lastShown == nil) {
+                lastShownLabel.text = ""
+            } else {
+                lastShownLabel.text = "Sist sett: \(daysSinceString(date: question!.lastShown!))"
+            }
+            if (question!.timeToShow != Date.distantFuture) {
+                let lastShownString = lastShownLabel.text!
+                lastShownLabel.text = "\(lastShownString.count > 0 ? "\(lastShownString) - " : "")Due: \(daysSinceString(date: question!.timeToShow))"
+            }
             countLabel.text = "Nye: \(getQuestions()!.newQuestions.count), sett: \(getQuestions()!.seenQuestions.count)"
             rightAnswerButton.isHidden = presufOrListsSeg.selectedSegmentIndex == 0
             rightAnswerButton.setTitle("Vis svar", for: .normal)
         }
         wrongAnswerButton.setTitle("", for: .normal)
         wrongAnswerButton.isUserInteractionEnabled = false
+    }
+    
+    func daysSinceString(date: Date) -> String {
+        let calendar = Calendar.current
+        // Replace the hour (time) of both dates with 00:00
+        let lastShown = calendar.date(bySettingHour: 12, minute: 00, second: 00, of: calendar.startOfDay(for: date))!
+        let today = calendar.date(bySettingHour: 12, minute: 00, second: 00, of: calendar.startOfDay(for: Date()))!
+        let components = calendar.dateComponents([.day], from: lastShown, to: today)
+        let daysSinceLastShown = components.day!
+        if (daysSinceLastShown == 0) {
+            return "i dag"
+        } else if (daysSinceLastShown < 0) {
+            return "om \(abs(daysSinceLastShown)) dag\(daysSinceLastShown < -1 ? "er" : "")"
+        } else {
+            return "\(daysSinceLastShown) dag\(daysSinceLastShown > 1 ? "er" : "") siden"
+        }
     }
     
     func updateQuestions() {
@@ -234,9 +261,9 @@ class WorkoutViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         feedbackLabel.textColor = UIColor.red
         
         let inputStringArray = inputArray.map { String($0) }
-        let inputAsJoinedString = inputStringArray.joined(separator: ", ")
+        let inputAsJoinedString = "\(inputStringArray.isEmpty ? "" : " ")\(inputStringArray.joined(separator: ", "))"
         let attributedInput = NSMutableAttributedString(string: inputAsJoinedString)
-        let attributedFeedback = NSMutableAttributedString(string: "Du skrev\(inputStringArray.isEmpty ? " ingenting" : ": ")")
+        let attributedFeedback = NSMutableAttributedString(string: "Du skrev\(inputStringArray.isEmpty ? " ingenting" : ":")")
         
         for letter in inputStringArray {
             if (!question!.answer.contains(letter)) {
@@ -253,8 +280,21 @@ class WorkoutViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             attributedFeedback.append(NSMutableAttributedString(string: feedbackEnd))
             feedbackLabel.attributedText = attributedFeedback
         } else {
-            let feedbackEnd = ",\nriktig\(question!.answer.count > 1 ? "e" : "") \(isPrefix ? "prefix" : "suffix") for \(question!.hint): \(question!.answer.joined(separator: ", "))"
+            
+            let answerAsJoinedString = " \(question!.answer.joined(separator: ", "))"
+            let attributedAnswer = NSMutableAttributedString(string: answerAsJoinedString)
+            for letter in question!.answer {
+                if (!inputStringArray.contains(letter)) {
+                    let range = (answerAsJoinedString as NSString).range(of: " \(letter)")
+                    attributedAnswer.addAttribute(NSAttributedString.Key.underlineStyle,
+                                         value: NSUnderlineStyle.single.rawValue,
+                                         range: range)
+                }
+            }
+            
+            let feedbackEnd = ",\nriktig\(question!.answer.count > 1 ? "e" : "") \(isPrefix ? "prefix" : "suffix") for \(question!.hint):"
             attributedFeedback.append(NSMutableAttributedString(string: feedbackEnd))
+            attributedFeedback.append(attributedAnswer)
             feedbackLabel.attributedText = attributedFeedback
         }
         showNextQuestion(correctAnswer: false)
