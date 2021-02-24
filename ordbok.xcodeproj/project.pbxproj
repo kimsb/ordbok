@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F30CC1012359ED27001C8410 /* ActivitySpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CC1002359ED27001C8410 /* ActivitySpinner.swift */; };
+		F36EC567243BD08D0041DC36 /* nsf2020.bin in Resources */ = {isa = PBXBuildFile; fileRef = F36EC566243BD08D0041DC36 /* nsf2020.bin */; };
 		F38A10F32350C2CE00A4C7A6 /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38A10F22350C2CE00A4C7A6 /* Questions.swift */; };
 		F38FE466235394E40049F7AA /* WorkoutSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38FE465235394E40049F7AA /* WorkoutSettings.swift */; };
 		F38FE4682353B5700049F7AA /* CreateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38FE4672353B5700049F7AA /* CreateListViewController.swift */; };
@@ -21,7 +22,6 @@
 		F3D7277F23466E130086C131 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3D7277D23466E130086C131 /* LaunchScreen.storyboard */; };
 		F3D7278A23466E6F0086C131 /* Dawg.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D7278923466E6F0086C131 /* Dawg.swift */; };
 		F3D7278C23466F9B0086C131 /* DawgBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D7278B23466F9B0086C131 /* DawgBuilder.swift */; };
-		F3EAE57C2346A0DB002F70A4 /* nsf2019.bin in Resources */ = {isa = PBXBuildFile; fileRef = F3EAE57B2346A0DB002F70A4 /* nsf2019.bin */; };
 		F3EAE57E23471D69002F70A4 /* tanum.bin in Resources */ = {isa = PBXBuildFile; fileRef = F3EAE57D23471D69002F70A4 /* tanum.bin */; };
 		F3EAE580234723B0002F70A4 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EAE57F234723B0002F70A4 /* TableViewCell.swift */; };
 		F3EAE5822347332D002F70A4 /* FeedbackHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EAE5812347332D002F70A4 /* FeedbackHeader.swift */; };
@@ -30,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		F30CC1002359ED27001C8410 /* ActivitySpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitySpinner.swift; sourceTree = "<group>"; };
+		F36EC566243BD08D0041DC36 /* nsf2020.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = nsf2020.bin; sourceTree = "<group>"; };
 		F38A10F22350C2CE00A4C7A6 /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
 		F38FE465235394E40049F7AA /* WorkoutSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSettings.swift; sourceTree = "<group>"; };
 		F38FE4672353B5700049F7AA /* CreateListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateListViewController.swift; sourceTree = "<group>"; };
@@ -45,7 +46,6 @@
 		F3D7278023466E130086C131 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3D7278923466E6F0086C131 /* Dawg.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dawg.swift; sourceTree = "<group>"; };
 		F3D7278B23466F9B0086C131 /* DawgBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DawgBuilder.swift; sourceTree = "<group>"; };
-		F3EAE57B2346A0DB002F70A4 /* nsf2019.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = nsf2019.bin; sourceTree = "<group>"; };
 		F3EAE57D23471D69002F70A4 /* tanum.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = tanum.bin; sourceTree = "<group>"; };
 		F3EAE57F234723B0002F70A4 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		F3EAE5812347332D002F70A4 /* FeedbackHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackHeader.swift; sourceTree = "<group>"; };
@@ -116,7 +116,7 @@
 		F3D7278823466E4B0086C131 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F3EAE57B2346A0DB002F70A4 /* nsf2019.bin */,
+				F36EC566243BD08D0041DC36 /* nsf2020.bin */,
 				F3EAE57D23471D69002F70A4 /* tanum.bin */,
 			);
 			path = Resources;
@@ -181,8 +181,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3D7277F23466E130086C131 /* LaunchScreen.storyboard in Resources */,
+				F36EC567243BD08D0041DC36 /* nsf2020.bin in Resources */,
 				F3EAE57E23471D69002F70A4 /* tanum.bin in Resources */,
-				F3EAE57C2346A0DB002F70A4 /* nsf2019.bin in Resources */,
 				F3D7277C23466E130086C131 /* Assets.xcassets in Resources */,
 				F3D7277A23466E110086C131 /* Main.storyboard in Resources */,
 			);

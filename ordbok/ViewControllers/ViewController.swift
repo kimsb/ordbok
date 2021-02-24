@@ -46,16 +46,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             } else if (prefiksButton.hasBeenPressed && suffiksButton.hasBeenPressed) {
                 findPrefixes(inputText: inputText)
                 findSuffixes(inputText: inputText)
+                words = words.sorted {$0.count < $1.count }
                 if (words.isEmpty) {
                     words.append("-")
                 }
             } else if (prefiksButton.hasBeenPressed) {
                 findPrefixes(inputText: inputText)
+                words = words.sorted {$0.count < $1.count }
                 if (words.isEmpty) {
                     words.append("-")
                 }
             } else if (suffiksButton.hasBeenPressed) {
                 findSuffixes(inputText: inputText)
+                words = words.sorted {$0.count < $1.count }
                 if (words.isEmpty) {
                     words.append("-")
                 }
@@ -71,19 +74,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func findSuffixes(inputText: String) {
         var anagrams = [String]()
-        var filledLetters = [Int: Character]()
-        let inputTextArray = Array(inputText)
-        for index in (0..<inputText.count) {
-            filledLetters[index] = inputTextArray[index]
-        }
-        
-        if let suffix = Ordlister.shared.nsf.anagrams(withLetters: ["?"], wordLength: inputText.count + 1, filledLetters: filledLetters) {
-            anagrams.append(contentsOf: suffix)
-        }
-        if (inputText.count == 6) {
-            if let suffixTanums = Ordlister.shared.tanums.anagrams(withLetters: ["?"], wordLength: inputText.count + 1, filledLetters: filledLetters) {
-                for word in suffixTanums {
-                    anagrams.append("\(word) (står i Tanums..?)")
+        for i in (1...(10-inputText.count)) {
+            var filledLetters = [Int: Character]()
+            let inputTextArray = Array(inputText)
+            for index in (0..<inputText.count) {
+                filledLetters[index] = inputTextArray[index]
+            }
+            var withLetters = [Character]()
+            for _ in (1...i) {
+                withLetters.append("?")
+            }
+            if let suffix = Ordlister.shared.nsf.anagrams(withLetters: withLetters, wordLength: inputText.count + i, filledLetters: filledLetters) {
+                anagrams.append(contentsOf: suffix)
+            }
+            if (inputText.count == 6) {
+                if let suffixTanums = Ordlister.shared.tanums.anagrams(withLetters: withLetters, wordLength: inputText.count + i, filledLetters: filledLetters) {
+                    for word in suffixTanums {
+                        anagrams.append("\(word) (står i Tanums..?)")
+                    }
                 }
             }
         }
@@ -92,19 +100,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func findPrefixes(inputText: String) {
         var anagrams = [String]()
-        var filledLetters = [Int: Character]()
-        let inputTextArray = Array(inputText)
-        for index in (0..<inputText.count) {
-            filledLetters[index+1] = inputTextArray[index]
-        }
-        
-        if let prefix = Ordlister.shared.nsf.anagrams(withLetters: ["?"], wordLength: inputText.count + 1, filledLetters: filledLetters) {
-            anagrams.append(contentsOf: prefix)
-        }
-        if (inputText.count == 6) {
-            if let prefixTanums = Ordlister.shared.tanums.anagrams(withLetters: ["?"], wordLength: inputText.count + 1, filledLetters: filledLetters) {
-                for word in prefixTanums {
-                    anagrams.append("\(word) (står i Tanums..?)")
+        for i in (1...(10-inputText.count)) {
+            var filledLetters = [Int: Character]()
+            let inputTextArray = Array(inputText)
+            for index in (0..<inputText.count) {
+                filledLetters[i+index] = inputTextArray[index]
+            }
+            var withLetters = [Character]()
+            for _ in (1...i) {
+                withLetters.append("?")
+            }
+            if let prefix = Ordlister.shared.nsf.anagrams(withLetters: withLetters, wordLength: inputText.count + i, filledLetters: filledLetters) {
+                anagrams.append(contentsOf: prefix)
+            }
+            if (inputText.count == 6) {
+                if let prefixTanums = Ordlister.shared.tanums.anagrams(withLetters: withLetters, wordLength: inputText.count + i, filledLetters: filledLetters) {
+                    for word in prefixTanums {
+                        anagrams.append("\(word) (står i Tanums..?)")
+                    }
                 }
             }
         }

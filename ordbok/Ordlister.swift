@@ -78,7 +78,7 @@ class Ordlister {
     
     private init() {
         //dette tar ca 1 sekund - kan det flyttes ut til lagring?
-        nsf = Dawg.load(from: Bundle.main.path(forResource: "nsf2019.bin", ofType: nil)!)!
+        nsf = Dawg.load(from: Bundle.main.path(forResource: "nsf2020.bin", ofType: nil)!)!
         tanums = Dawg.load(from: Bundle.main.path(forResource: "tanum.bin", ofType: nil)!)!
         
         if let loadedCustomLists = NSKeyedUnarchiver.unarchiveObject(withFile: Questions.ArchiveURLCustomLists.path) as? [String:Questions] {
