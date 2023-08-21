@@ -124,11 +124,6 @@ class CreateListViewController: UIViewController {
                 if let anagrams = Ordlister.shared.nsf.anagrams(withLetters: withLetters, wordLength: letterCount, filledLetters: filledLetters) {
                     words.formUnion(anagrams)
                 }
-                if (letterCount == 7) {
-                    if let tanums = Ordlister.shared.tanums.anagrams(withLetters: withLetters, wordLength: letterCount, filledLetters: filledLetters) {
-                        words.formUnion(tanums)
-                    }
-                }
             }
             if (!words.isEmpty) {
                 var alphaMap = [String:[String]]()

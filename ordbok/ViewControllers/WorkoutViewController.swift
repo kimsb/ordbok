@@ -119,6 +119,16 @@ class WorkoutViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     func showNextQuestion(correctAnswer: Bool? = nil) {
+        if #available(iOS 13.0, *) {
+            if traitCollection.userInterfaceStyle == .light {
+                lastShownLabel.textColor = UIColor.black
+            } else {
+                lastShownLabel.textColor = UIColor.white
+            }
+        } else {
+            lastShownLabel.textColor = UIColor.black
+        }
+        
         if let correctAnswer = correctAnswer {
             lastQuestion = question
             question!.setTimeToShow(answeredCorrect: correctAnswer)
@@ -143,6 +153,10 @@ class WorkoutViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             }
             if (question!.timeToShow != Date.distantFuture) {
                 let lastShownString = lastShownLabel.text!
+                let daysSinceLastShown = daysSince(date: question!.timeToShow)
+                if (daysSinceLastShown >= 0 ) {
+                    lastShownLabel.textColor = UIColor.red
+                }
                 lastShownLabel.text = "\(lastShownString.count > 0 ? "\(lastShownString) - " : "")Due: \(daysSinceString(date: question!.timeToShow))"
             }
             countLabel.text = "Nye: \(getQuestions()!.newQuestions.count), sett: \(getQuestions()!.seenQuestions.count)"
@@ -153,13 +167,17 @@ class WorkoutViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         wrongAnswerButton.isUserInteractionEnabled = false
     }
     
-    func daysSinceString(date: Date) -> String {
+    func daysSince(date: Date) -> Int {
         let calendar = Calendar.current
         // Replace the hour (time) of both dates with 00:00
         let lastShown = calendar.date(bySettingHour: 12, minute: 00, second: 00, of: calendar.startOfDay(for: date))!
         let today = calendar.date(bySettingHour: 12, minute: 00, second: 00, of: calendar.startOfDay(for: Date()))!
         let components = calendar.dateComponents([.day], from: lastShown, to: today)
-        let daysSinceLastShown = components.day!
+        return components.day!
+    }
+    
+    func daysSinceString(date: Date) -> String {
+        let daysSinceLastShown = daysSince(date: date)
         if (daysSinceLastShown == 0) {
             return "i dag"
         } else if (daysSinceLastShown < 0) {

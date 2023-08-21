@@ -46,18 +46,33 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             } else if (prefiksButton.hasBeenPressed && suffiksButton.hasBeenPressed) {
                 findPrefixes(inputText: inputText)
                 findSuffixes(inputText: inputText)
+                let finnesINSF = Ordlister.shared.nsf.lookup(inputText)
+                if (finnesINSF) {
+                    words.append(inputText)
+                }
+                words.sort()
                 words = words.sorted {$0.count < $1.count }
                 if (words.isEmpty) {
                     words.append("-")
                 }
             } else if (prefiksButton.hasBeenPressed) {
                 findPrefixes(inputText: inputText)
+                let finnesINSF = Ordlister.shared.nsf.lookup(inputText)
+                if (finnesINSF) {
+                    words.append(inputText)
+                }
+                words.sort()
                 words = words.sorted {$0.count < $1.count }
                 if (words.isEmpty) {
                     words.append("-")
                 }
             } else if (suffiksButton.hasBeenPressed) {
                 findSuffixes(inputText: inputText)
+                let finnesINSF = Ordlister.shared.nsf.lookup(inputText)
+                if (finnesINSF) {
+                    words.append(inputText)
+                }
+                words.sort()
                 words = words.sorted {$0.count < $1.count }
                 if (words.isEmpty) {
                     words.append("-")
@@ -74,6 +89,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func findSuffixes(inputText: String) {
         var anagrams = [String]()
+        
+        
+        
         for i in (1...(10-inputText.count)) {
             var filledLetters = [Int: Character]()
             let inputTextArray = Array(inputText)
@@ -87,15 +105,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if let suffix = Ordlister.shared.nsf.anagrams(withLetters: withLetters, wordLength: inputText.count + i, filledLetters: filledLetters) {
                 anagrams.append(contentsOf: suffix)
             }
-            if (inputText.count == 6) {
-                if let suffixTanums = Ordlister.shared.tanums.anagrams(withLetters: withLetters, wordLength: inputText.count + i, filledLetters: filledLetters) {
-                    for word in suffixTanums {
-                        anagrams.append("\(word) (står i Tanums..?)")
-                    }
-                }
-            }
         }
-        words.append(contentsOf: anagrams.sorted(by: <))
+        words.append(contentsOf: anagrams)
     }
     
     func findPrefixes(inputText: String) {
@@ -113,15 +124,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if let prefix = Ordlister.shared.nsf.anagrams(withLetters: withLetters, wordLength: inputText.count + i, filledLetters: filledLetters) {
                 anagrams.append(contentsOf: prefix)
             }
-            if (inputText.count == 6) {
-                if let prefixTanums = Ordlister.shared.tanums.anagrams(withLetters: withLetters, wordLength: inputText.count + i, filledLetters: filledLetters) {
-                    for word in prefixTanums {
-                        anagrams.append("\(word) (står i Tanums..?)")
-                    }
-                }
-            }
         }
-        words.append(contentsOf: anagrams.sorted(by: <))
+        words.append(contentsOf: anagrams)
     }
     
     func findAnagrams(inputText: String) {
@@ -130,34 +134,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if let nsfAnagrams = Ordlister.shared.nsf.anagrams(withLetters: Array(inputText), wordLength: wordLength) {
                 anagrams.append(contentsOf: nsfAnagrams)
             }
-            if (wordLength == 7) {
-                if let tanumAnagrams = Ordlister.shared.tanums.anagrams(withLetters: Array(inputText), wordLength: wordLength) {
-                    for word in tanumAnagrams {
-                        anagrams.append("\(word) (står i Tanums..?)")
-                    }
-                }
-            }
             words.append(contentsOf: anagrams.sorted(by: <))
         }
     }
     
     func checkSingleWord(inputText: String) {
         let finnesINSF = Ordlister.shared.nsf.lookup(inputText)
-        let finnesITanums = inputText.count == 7 && Ordlister.shared.tanums.lookup(inputText)
         
         if (finnesINSF) {
-            if (inputText.count < 7) {
+            if (inputText.count <= 8) {
                 feedback = "GODKJENT!"
             } else {
                 feedback = "GODKJENT! (i NSF-lista)"
             }
-        } else if (finnesITanums) {
-            feedback = "Ordet står i Tanums..?"
         } else {
             feedback = "IKKE GODKJENT"
         }
         
-        addToListButton.isHidden = !finnesINSF && !finnesITanums
+        addToListButton.isHidden = !finnesINSF
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -264,11 +258,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 var anagrams = [String]()
                 if let nsfAnagrammer = Ordlister.shared.nsf.anagrams(withLetters: Array(inputAlpha), wordLength: inputAlpha.count) {
                     anagrams.append(contentsOf: nsfAnagrammer)
-                }
-                if (inputAlpha.count == 7) {
-                    if let tanumsAnagrammer = Ordlister.shared.tanums.anagrams(withLetters: Array(inputAlpha), wordLength: inputAlpha.count) {
-                        anagrams.append(contentsOf: tanumsAnagrammer)
-                    }
                 }
                 coolList.addQuestion(newQuestion: Question(hint: inputAlpha, answer: anagrams, hintScore: Ordlister.shared.getWordScore(word: inputAlpha)))
                 

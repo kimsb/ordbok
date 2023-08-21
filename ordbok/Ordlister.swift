@@ -13,7 +13,6 @@ class Ordlister {
     static let shared = Ordlister()
     
     let nsf: Dawg
-    let tanums: Dawg
     private var allPreSuf: [String:[Int:Questions]]
     private var customLists: [String:Questions]
     
@@ -78,8 +77,8 @@ class Ordlister {
     
     private init() {
         //dette tar ca 1 sekund - kan det flyttes ut til lagring?
-        nsf = Dawg.load(from: Bundle.main.path(forResource: "nsf2020.bin", ofType: nil)!)!
-        tanums = Dawg.load(from: Bundle.main.path(forResource: "tanum.bin", ofType: nil)!)!
+        //om du må oppdatere ordlista, bruk det egne prosjektet Dawg-list for å lage bin-fil
+        nsf = Dawg.load(from: Bundle.main.path(forResource: "NSF-2023.bin", ofType: nil)!)!
         
         if let loadedCustomLists = NSKeyedUnarchiver.unarchiveObject(withFile: Questions.ArchiveURLCustomLists.path) as? [String:Questions] {
             customLists = loadedCustomLists
